@@ -1,0 +1,15 @@
+
+
+//! global
+// @import "../node_modules/bulma/bulma"; // css framework - install via `npm i -D bulma` if you'd like to use
+@import "./styles/global/setup"; // normalize, clearfix, border-box, anti-aliasing, grey-scale
+@import "./styles/global/mixins"; // global mixins
+@import "./styles/global/variables"; // global variables
+@import "./styles/global/typography"; // global typography
+@import "./styles/global/global"; // global styles
+
+//! sections
+// @import "./styles/sections/_header";
+// @import "./styles/sections/_footer";
+
+//! snippets
