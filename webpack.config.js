@@ -1,8 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const imageminMozjpeg = require('imagemin-mozjpeg');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
+const OfflinePlugin = require('offline-plugin');
+
+const devMode = process.env.NODE_ENV !== "production";
 
 module.exports = {
   entry: './src/index.js',
@@ -19,6 +25,7 @@ module.exports = {
       })
     ]
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -35,12 +42,25 @@ module.exports = {
         ]
       },
       {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'images/',
+              publicPath: 'images/'
+            },
+          }
+        ]
+      },
+      {
         test: /\.(sa|sc|c)ss$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          'sass-loader'
+          { loader: 'css-loader', options: { sourceMap: true } },
+          { loader: 'postcss-loader', options: { sourceMap: true } },
+          { loader: 'sass-loader', options: { sourceMap: true } }
         ]
       },
       {
@@ -56,6 +76,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(['dist']), // deletes the previous dist folder before creating a new one
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: './index.html'
@@ -64,14 +85,18 @@ module.exports = {
       filename: "webpack-bundle.css",
       chunkFilename: "[id].css"
     }),
-    new OptimizeCssAssetsPlugin({
-      assetNameRegExp: /\.optimize\.css$/g,
-      cssProcessor: require('cssnano'),
-      cssProcessorPluginOptions: {
-        preset: ['default', { discardComments: { removeAll: true } }],
-      },
-      canPrint: true
-    })
+    new CompressionPlugin({
+      test: /\.(html|css|js)(\?.*)?$/i // only compressed html/css/js, skips compressing sourcemaps
+    }),
+    new ImageminPlugin({
+      test: /\.(jpe?g|png|gif|svg)$/i, // checks for these files
+      gifsicle: { optimizationLevel: 9 }, // lossless gif compressor
+      pngquant: ({ quality: '75' }), // lossy png compressor, remove line for default lossless
+      plugins: [imageminMozjpeg({ // lossy jpg compressor, remove line for default lossless
+        quality: '75'
+      })]
+    }),
+    new OfflinePlugin()
   ],
   resolve: {
     extensions: ['.css', '.scss', '.sass', '.js']

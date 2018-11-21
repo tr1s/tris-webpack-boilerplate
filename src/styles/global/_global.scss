@@ -1,7 +1,21 @@
+*::selection {
+  color: lightseagreen;
+}
 
 body {
   border: 8px solid lightblue;
+  width: 100%;
+}
+.wrapper {
+  max-width: 100%;
 }
 
-//what teh fuck
+img {
+  display: block;
+  margin: 0 auto;
+}
 
+a {
+  text-decoration: none;
+  color: red;
+}
