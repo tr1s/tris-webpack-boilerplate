@@ -1,14 +1,14 @@
 //! css frameworks
-// @import "../node_modules/bulma/bulma"; // css framework - install via `npm i -D bulma` if you'd like to use
+// @import "../node_modules/bulma/bulma"; // css framework https://bulma.io/ - uncomment if you'd like to use it
 
 //! global
-@import "./styles/global/setup"; // normalize, clearfix, border-box, anti-aliasing, grey-scale
-@import "./styles/global/mixins"; // global mixins
-@import "./styles/global/variables"; // global variables
-@import "./styles/global/typography"; // global typography
-@import "./styles/global/global"; // global styles
+@import "./styles/setup/setup"; /* normalize, clearfix, border-box, anti-aliasing, grey-scale */
+@import "./styles/setup/mixins";
+@import "./styles/setup/variables";
+@import "./styles/setup/typography";
 
 //! layout
-@import "./styles/layout/home"; // home/main page styles
-// @import "./styles/sections/_header";
-// @import "./styles/sections/_footer";
+@import "./styles/layout/global";
+@import "./styles/layout/header";
+// @import "./styles/layout/main";
+// @import "./styles/layout/footer";

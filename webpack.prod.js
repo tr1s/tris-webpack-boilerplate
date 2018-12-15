@@ -1,0 +1,47 @@
+const merge = require('webpack-merge');
+const common = require('./webpack.common.js');
+
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const imageminMozjpeg = require('imagemin-mozjpeg');
+const CompressionPlugin = require('compression-webpack-plugin');
+
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+
+module.exports = merge(common, {
+  mode: 'production',
+  devtool: 'source-map',
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true
+      })
+    ]
+  },
+  plugins: [
+    new CompressionPlugin({
+      test: /\.(html|css|js)(\?.*)?$/i // only compressed html/css/js, skips compressing sourcemaps etc
+    }),
+    new ImageminPlugin({
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      gifsicle: { // lossless gif compressor
+        optimizationLevel: 9
+      },
+      pngquant: ({ // lossy png compressor, remove for default lossless
+        quality: '75'
+      }),
+      plugins: [imageminMozjpeg({ // lossy jpg compressor, remove for default lossless
+        quality: '75'
+      })]
+    }),
+    /* new FaviconsWebpackPlugin({
+      logo: './src/images/tris-package.svg',
+      icons: {
+        twitter: true,
+        windows: true
+      }
+    }) */
+  ]
+});
