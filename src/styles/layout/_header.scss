@@ -1,19 +1,23 @@
 header {
-  // background: #d7d7d7;
+  background: $lightgrey;
 }
 
 .top {
   display: flex;
   align-items: center;
-  min-height: 40px;
-  padding-left: 10px;
-  border-bottom: 1px solid #dbdbdb;
-
-  img {
-    width: 35px;
-    height: 40px;
-    padding-right: 10px;
+  border-bottom: 1px solid $grey;
+  .link {
+    &:hover {
+      color: darken($color-primary, 15);
+    }
+  }
+  .logo-link {
+    padding: 10px 10px;
+    border-right: 1px solid $grey;
     margin-right: 10px;
-    border-right: 1px solid #dbdbdb;
+  }
+  .logo-img {
+    width: 25px;
+    height: 25px;
   }
 }

@@ -1,19 +1,20 @@
 //? set your brand colors
 
-$red: #AD2532;
-$red-darker: #690608;
-$blue: #3B4B98;
-$blue-darker: #3A3A59;
-
 $white: #fff;
-$white-ish: #F7F7F7;
-$grey: #D3D3D3;
-$black: #09090E;
+$white-ish: #f7f7f7;
+
+$grey: #d7d7d7;
+$lightgrey: #f3f3f373;
+
+$black: #09090e;
 $black-ish: #444;
 
+$blue: #458bc4;
+$pink: #fff0f5;
+$yellow: #fffacd;
 
 //? override for project clarity
 
-$color-primary: $red;
-$color-secondary: $blue;
-$color-tertiary: #BADA55;
+$color-primary: $blue;
+$color-secondary: $pink;
+$color-tertiary: $yellow;

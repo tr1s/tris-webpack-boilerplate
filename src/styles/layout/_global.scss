@@ -1,8 +1,9 @@
 *::selection {
-  color: lightseagreen;
+  background: $pink;
 }
 
 body {
+  margin: 0;
   width: 100%;
 }
 
@@ -16,6 +17,5 @@ img {
 
 a {
   text-decoration: none;
-  color: pink;
-  color: lightseagreen;
+  color: $blue;
 }
