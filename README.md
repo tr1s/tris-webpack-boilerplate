@@ -6,7 +6,7 @@ Version 1 status has been acheived. More thorough documentation will come soon.
 
 ___
 
-### Quick start:
+### Usage:
 
 You need [git](https://git-scm.com/) and [node.js](https://nodejs.org/) on your computer before running.
 
@@ -16,4 +16,4 @@ You need [git](https://git-scm.com/) and [node.js](https://nodejs.org/) on your 
 
 You're all set, start coding 👩‍💻👨‍💻 !
 
-Remove everything in the `src/styles/` folder, `src/index.html` and `src/index.scss/` if you'd like to start 100% fresh and/or create your own Sass worklow. I based my folder structure off the 7-1 pattern. [Read more about the 7-1 pattern](https://vanseodesign.com/css/sass-directory-structures/).
+Remove everything in the `src/styles/` folder, `src/index.html` and `src/index.scss/` if you'd like to start 100% fresh and/or create your own Sass worklow. I based my folder structure off the [7-1 pattern](https://vanseodesign.com/css/sass-directory-structures/).
