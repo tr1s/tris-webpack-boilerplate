@@ -45,10 +45,6 @@ module.exports = merge(common, {
         windows: true
       }
     }),
-    new OfflinePlugin({
-      ServiceWorker: {
-        events: true
-      }
-    })
+    new OfflinePlugin()
   ]
 });
