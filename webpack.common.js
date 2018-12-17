@@ -3,6 +3,7 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 
 module.exports = {
   mode: 'development',
@@ -29,6 +30,17 @@ module.exports = {
             name: '[name].[ext]',
             outputPath: 'images/',
             publicPath: 'images/'
+          },
+        }]
+      },
+      {
+        test: /\.(woff|woff2|ttf|otf)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'fonts/',
+            publicPath: 'fonts/'
           },
         }]
       },
@@ -63,7 +75,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'tris-webpack-boilerplate',
       template: './src/index.html',
-      inject: 'body'
+      inject: 'head'
+    }),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'defer'
     }),
     new MiniCssExtractPlugin({
       filename: 'webpack-bundle.css',

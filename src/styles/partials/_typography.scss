@@ -1,0 +1,34 @@
+//! import google fonts
+// @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700');
+// OR use @font-face like below
+
+//! import a custom font below
+@font-face {
+  font-family: 'Libre-Baskerville-Reg';
+  font-display: fallback;
+  src: url('/fonts/LibreBaskerville-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+//! set font variables
+$font-heading: 'Libre-Baskerville-Reg', 'Georgia', serif;
+$font-body: sans-serif;
+
+
+html {
+  font-size: 62.5%; // 1rem = 10px, 3.5rem = 35px;
+}
+
+body {
+  font-family: $font-body;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: $black;
+}
+
+h1 {
+  font-family: $font-heading, serif;
+  font-size: 1.7rem;
+  font-weight: 400;
+}

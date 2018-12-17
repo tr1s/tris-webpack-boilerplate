@@ -2,10 +2,10 @@
 // @import "../node_modules/bulma/bulma"; // css framework https://bulma.io/ - uncomment if you'd like to use it
 
 //! global
-@import "./styles/setup/setup"; /* normalize, clearfix, border-box, anti-aliasing, grey-scale */
-@import "./styles/setup/mixins";
-@import "./styles/setup/variables";
-@import "./styles/setup/typography";
+@import "./styles/partials/setup"; /* normalize, clearfix, border-box, anti-aliasing, grey-scale */
+@import "./styles/partials/mixins";
+@import "./styles/partials/variables";
+@import "./styles/partials/typography";
 
 //! layout
 @import "./styles/layout/global";
