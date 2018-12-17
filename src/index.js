@@ -6,12 +6,12 @@ runtime.install({
   },
   onUpdateReady: () => {
     console.log('SW Event:', 'onUpdateReady');
-    // Update is applied here
+    // Tells to new SW to take control immediately
     runtime.applyUpdate();
   },
   onUpdated: () => {
     console.log('SW Event:', 'onUpdated');
-    // Force reload happens here
+    // Reload the webpage to load into the new version
     window.location.reload();
   },
 
