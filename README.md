@@ -13,6 +13,8 @@ The goal of this project/boilerplate is to reach the following people:
 2. __The side-project hustlers__ 🏃🏽🏃🏻‍♀️, looking for a quick way to get their ideas/apps/websites out and into the browser... _fast_.
 3. __The obsessive compulsive__ 🕵🏿🕵🏻‍♀️, people who are obsessed with getting those perfect scores on performance and optimizaitons reports. People who are digitally organized and pride themselves knowing that all their files are minimized, compressed, zipped, and ready to ship!
 
+Feel free to fork and create your own workflows
+
 Now that version 1 status has been acheived, __more thorough documentation will soon come__.
 
 ___
@@ -41,6 +43,10 @@ ___
 ## Features Explained:
 
 Coming Soon
+
+## Gotcha's:
+
+Coming Soon _(hint: I want to murder jQuery)_
 
 ___
 
