@@ -8,7 +8,6 @@ __This webpack boilerplate is for beginner, intermediate, and advanced developer
 
 __Version 1 status has been acheived.__ More thorough documentation will come soon.
 
-
 ___
 
 ### Usage:
