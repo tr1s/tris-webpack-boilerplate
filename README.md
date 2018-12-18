@@ -42,4 +42,6 @@ ___
 
 Coming Soon
 
+___
 
+Hope this helped! Follow me on [twitter](https://twitter.com/triscodes) if you'd like. 💎✨🌸
