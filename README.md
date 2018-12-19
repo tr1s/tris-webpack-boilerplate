@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.com/tr1s/tris-webpack-boilerplate.svg?branch=master)](https://travis-ci.com/tr1s/tris-webpack-boilerplate)
 [![](https://img.shields.io/david/tr1s/tris-webpack-boilerplate.svg)](https://github.com/tr1s/tris-webpack-boilerplate)
 [![](https://img.shields.io/david/dev/tr1s/tris-webpack-boilerplate.svg)](https://github.com/tr1s/tris-webpack-boilerplate)
-[![](https://img.shields.io/gitter/room/nwjs/nw.js.svg?colorB=1681c0)](https://gitter.im/tr1s)
+[![](https://img.shields.io/badge/chat-twitter-blue.svg)](https://twitter.com/triscodes)
 ![](https://img.shields.io/github/license/tr1s/tris-webpack-boilerplate.svg)
 ![](https://img.shields.io/badge/buy%20me%20a%20tea-donate-yellow.svg)
 
