@@ -12,10 +12,10 @@ __This webpack boilerplate is for beginner, intermediate, and advanced developer
 The goal of this project/boilerplate is to reach the following people:
 
 1. __The beginners__ 👶, who although use Gulp/Webpack/Node/Npm still need more thorough explainations than the more acquainted developers. They want things to work, but they want to know _how_ and _why_ as well.
-2. __The side-project hustlers__ 🏃‍♀️, looking for a quick way to get their ideas/apps/websites out and into the browser... _fast_.
+2. __The side-project hustlers__ 🏃‍♀️, those with all the great ideas but don't want to waste time with setup. They need to get their ideas, apps, and websites out and into the browser... _fast_.
 3. __The obsessive compulsive__ 🕵️‍♂️, people who are obsessed with getting those perfect scores on performance and optimizaitons reports. People who are digitally organized and pride themselves knowing that all their files are minimized, compressed, zipped, and ready to ship!
 
-Feel free to fork and create your own workflows based off this template!
+Feel free to fork and create your own workflows based off this template! Everyone's a little different, I understand.
 
 Now that version 1 status has been acheived, that means everything works but __more thorough documentation will soon come__.
 
