@@ -13,7 +13,7 @@ The goal of this project/boilerplate is to reach the following people:
 
 1. __The beginners__ 👶, who although use Gulp/Webpack/Node/Npm still need more thorough explainations than the more acquainted developers. They want things to work, but they want to know _how_ and _why_ as well.
 2. __The side-project hustlers__ 🏃‍♀️, looking for a quick way to get their ideas/apps/websites out and into the browser... _fast_.
-3. __The obsessive compulsive__ 🕵️‍♀️, people who are obsessed with getting those perfect scores on performance and optimizaitons reports. People who are digitally organized and pride themselves knowing that all their files are minimized, compressed, zipped, and ready to ship!
+3. __The obsessive compulsive__ 🕵️‍♂️, people who are obsessed with getting those perfect scores on performance and optimizaitons reports. People who are digitally organized and pride themselves knowing that all their files are minimized, compressed, zipped, and ready to ship!
 
 Feel free to fork and create your own workflows based off this template!
 
