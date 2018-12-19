@@ -84,7 +84,14 @@ module.exports = {
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'tris-webpack-boilerplate',
+      filename: 'index.html',
       template: './src/index.html',
+      inject: 'head'
+    }),
+    new HtmlWebpackPlugin({
+      title: 'tris-404-page',
+      filename: '404.html',
+      template: './src/404.html',
       inject: 'head'
     }),
     new ScriptExtHtmlWebpackPlugin({
