@@ -25,7 +25,8 @@ ___
 
 You need [git](https://git-scm.com/) and [node.js](https://nodejs.org/) on your computer before running.
 
-1. `git clone https://github.com/tr1s/tris-webpack-boilerplate.git`
+1. `git clone https://github.com/tr1s/tris-webpack-boilerplate.git your-project-name`
+2. `cd your-project-name`
 2. `npm install`
 3. `npm start`
 
