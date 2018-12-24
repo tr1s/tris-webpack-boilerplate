@@ -6,7 +6,7 @@
 ![](https://img.shields.io/github/license/tr1s/tris-webpack-boilerplate.svg)
 [![](https://img.shields.io/badge/buy%20me%20a%20tea-donate-yellow.svg)](https://paypal.me/Nightizm)
 
-[![](https://i.imgur.com/qZQF2Ju.jpg)]
+![](https://i.imgur.com/qZQF2Ju.jpg)
 
 __This webpack boilerplate is for beginner, intermediate, and advanced developers looking to create static websites immediately while acheiving all the right optimizations to score perfect on [Google Page Speed Insights](https://developers.google.com/speed/pagespeed/insights/) and [Google Lighthouse Reports](https://developers.google.com/web/tools/lighthouse/)__ — This is an evolution of [tris-gulp-boilerplate](https://github.com/tr1s/tris-gulp-boilerplate), now with Webpack 4. Webpack is the new standard for bundling JS which [Gulp](https://gulpjs.com/) wasn't capable of. Thankfully Webpack can both run tasks and build js 💪.
 
