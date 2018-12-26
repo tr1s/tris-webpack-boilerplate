@@ -1,5 +1,6 @@
 # tris-webpack-boilerplate
 
+[![Build Status](https://travis-ci.com/tr1s/tris-webpack-boilerplate.svg?branch=master)](https://travis-ci.com/tr1s/tris-webpack-boilerplate)
 [![](https://img.shields.io/david/tr1s/tris-webpack-boilerplate.svg)](https://github.com/tr1s/tris-webpack-boilerplate)
 [![](https://img.shields.io/david/dev/tr1s/tris-webpack-boilerplate.svg)](https://github.com/tr1s/tris-webpack-boilerplate)
 [![](https://img.shields.io/badge/chat-twitter-blue.svg)](https://twitter.com/triscodes)
