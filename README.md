@@ -137,11 +137,11 @@ module.exports = merge(common, {
   ]
 });
 ```
-___
 
 <a name="wds"/></a>
+___
 
-##### Webpack development server
+### Webpack development server
 
 The webpack-dev-server is configured in the package.json. `npm start` will run the server and open your project in the browser using the `webpack.dev.js` config. `npm start` is npm's default script, so you don't need to add `run` to it. But for the build you need to type `npm run build`.
 
@@ -151,11 +151,11 @@ The webpack-dev-server is configured in the package.json. `npm start` will run t
   "build": "webpack --config webpack.prod.js"
 },
 ```
-___
 
 <a name="html"/></a>
+___
 
-##### HTML assets and minification
+### HTML assets and minification
 
 We use the [html-loader](https://github.com/webpack-contrib/html-loader) to export HTML as a string and minify the output. This allows you to import your `src/index.html` from your `src/index.js`.
 
@@ -210,11 +210,11 @@ plugins: [
 ],
 ```
 Read more about [loaders](https://webpack.js.org/concepts/loaders/).
-___
 
 <a name="sass"/></a>
+___
 
-##### SCSS to CSS + autoprefixing
+### SCSS to CSS + autoprefixing
 
 In order to use Sass/SCSS, we need to use a few loaders to get our desired results. The [css-loader](https://github.com/webpack-contrib/css-loader), [postcss-loader](https://github.com/postcss/postcss-loader), and the [sass-loader](https://github.com/webpack-contrib/sass-loader).
 
@@ -282,11 +282,10 @@ plugins: [
   })
 ],
 ```
+<a name="es6"/></a>
 ___
 
-<a name="es6"/></a>
-
-##### ES6 transpiling
+### ES6 transpiling
 
 You may want to use the latest JavaScript features and syntax, but not all browsers support them yet. [Babel](https://babeljs.io/) will handle that for us.
 
