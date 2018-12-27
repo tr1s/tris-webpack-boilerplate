@@ -53,13 +53,12 @@ ___
 - [Favicon generation](#favi)
 - [Offline first and caching](#offline)
 
+<a name="wcs"/></a>
 ___
 
 ## Features Explained:
 
-<a name="wcs"/></a>
-
-##### Webpack Config Split
+### Webpack Config Split
 
 Instead of having one big `webpack.config.js`, we'll split our production and development builds into two new configs called `webpack.dev.js` and `webpack.prod.js`. Configurations we want on both development and production will go in the `webpack.common.js` config.
 
