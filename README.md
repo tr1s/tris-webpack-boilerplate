@@ -55,10 +55,11 @@ ___
 
 ___
 
-## Features Explained / Webpack Flow:
+## Features Explained:
 
 <a name="wcs"/></a>
-#### Webpack Config Split
+
+##### Webpack Config Split
 
 Instead of having one big `webpack.config.js`, we'll split our production and development builds into two new configs called `webpack.dev.js` and `webpack.prod.js`. Configurations we want on both development and production will go in the `webpack.common.js` config.
 
@@ -138,8 +139,9 @@ module.exports = merge(common, {
 ```
 ___
 
-#### Webpack development server
 <a name="wds"/></a>
+
+##### Webpack development server
 
 The webpack-dev-server is configured in the package.json. `npm start` will run the server and open your project in the browser using the `webpack.dev.js` config. `npm start` is npm's default script, so you don't need to add `run` to it. But for the build you need to type `npm run build`.
 
@@ -151,8 +153,9 @@ The webpack-dev-server is configured in the package.json. `npm start` will run t
 ```
 ___
 
-#### HTML assets and minification
 <a name="html"/></a>
+
+##### HTML assets and minification
 
 We use the [html-loader](https://github.com/webpack-contrib/html-loader) to export HTML as a string and minify the output. This allows you to import your `src/index.html` from your `src/index.js`.
 
@@ -209,8 +212,9 @@ plugins: [
 Read more about [loaders](https://webpack.js.org/concepts/loaders/).
 ___
 
-#### SCSS to CSS + autoprefixing
 <a name="sass"/></a>
+
+##### SCSS to CSS + autoprefixing
 
 In order to use Sass/SCSS, we need to use a few loaders to get our desired results. The [css-loader](https://github.com/webpack-contrib/css-loader), [postcss-loader](https://github.com/postcss/postcss-loader), and the [sass-loader](https://github.com/webpack-contrib/sass-loader).
 
@@ -280,8 +284,9 @@ plugins: [
 ```
 ___
 
-#### ES6 transpiling
 <a name="es6"/></a>
+
+##### ES6 transpiling
 
 You may want to use the latest JavaScript features and syntax, but not all browsers support them yet. [Babel](https://babeljs.io/) will handle that for us.
 
