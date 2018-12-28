@@ -23,7 +23,7 @@ Now that version 1 status has been acheived, that means everything works but __m
 
 ___
 
-## Usage:
+# Usage:
 
 You need [git](https://git-scm.com/) and [node.js](https://nodejs.org/) on your computer before running.
 
@@ -43,7 +43,7 @@ ___
 ___
 ___
 
-## Features:
+# Features:
 
 - [Webpack config split](#wcs)
 - [Webpack development server](#wds)
@@ -61,7 +61,7 @@ ___
 <a name="wcs"/></a>
 ___
 
-## Features Explained:
+# Features Explained:
 
 ### Webpack Config Split
 
@@ -473,13 +473,13 @@ module.exports = merge(common, {
 ```
 ___
 
-## Gotcha's:
+# Gotcha's:
 
 Coming Soon _(hint: I want to murder jQuery)_
 
 ___
 
-## Contributing:
+# Contributing:
 
 I try my best to explain things thoroughly, but if something can be explained more clearly, please feel free to send off a pull request with some suggested edits. Thank you!
 ___
