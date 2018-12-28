@@ -36,6 +36,11 @@ You're all set, start coding 👩‍💻👨‍💻 !
 
 Remove everything in the `src/styles/` folder, `src/index.html` and `src/index.scss/` if you'd like to start 100% fresh and/or create your own Sass worklow. I based my folder structure off the [7-1 pattern](https://vanseodesign.com/css/sass-directory-structures/).
 
+__If you'd like an in-depth explaination as to how everything works, please read about the features below.__ Otherwise, carry on coding and have fun :)
+
+___
+___
+___
 ___
 
 ## Features:
@@ -62,23 +67,23 @@ ___
 
 Instead of having one big `webpack.config.js`, we'll split our production and development builds into two new configs called `webpack.dev.js` and `webpack.prod.js`. Configurations we want on both development and production will go in the `webpack.common.js` config.
 
-When we run `npm start`, it will run the dev build based off the `webpack.dev.js` config which has already merged the `webpack.common.js` into itself.
+When we run `npm start`, it will run the dev build based off the `webpack.dev.js` config which also has the merged `webpack.common.js` configurations.
 
 ```js
-/* webpack.dev.js */
+/* wenpack.dev.js */
 
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
-/* as you can see it merges our common config then adds extra code */
+/* merges the webpack.common.js and then you add your extra */
 
 module.exports = merge(common, {
   mode: 'development',
-  devtool: 'eval-source-map',
+  /* the rest of code goes here */
 });
 ```
 
-Since we want our development to be as accurate as possible, we keep our development and production builds identical. The only differences are that we use a lighter weight source map for development. Our production build will handle compressing images, minifying html/css/js, outputting favicons, and caching, so the code won't change, it will just become better suited for production when you're ready to take your site live.
+When we run `npm run build`, it will run the prod build based off the `webpack.prod.js` config which also has the merged `webpack.common.js` configurations.
 
 ```js
 /* webpack.prod.js */
@@ -86,63 +91,23 @@ Since we want our development to be as accurate as possible, we keep our develop
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
-/* all the requires for optimizations and plugins */
-
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const ImageminPlugin = require('imagemin-webpack-plugin').default;
-const imageminMozjpeg = require('imagemin-mozjpeg');
-const CompressionPlugin = require('compression-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const OfflinePlugin = require('offline-plugin');
-
-/* as you can see it merges our common config then adds extra code */
+/* merges the webpack.common.js and then you add your extra */
 
 module.exports = merge(common, {
   mode: 'production',
-  devtool: 'source-map',
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true
-      })
-    ]
-  },
-  plugins: [
-    new CompressionPlugin({
-      test: /\.(html|css|js)(\?.*)?$/i // only compressed html/css/js, skips compressing sourcemaps etc
-    }),
-    new ImageminPlugin({
-      test: /\.(jpe?g|png|gif|svg)$/i,
-      gifsicle: { // lossless gif compressor
-        optimizationLevel: 9
-      },
-      pngquant: ({ // lossy png compressor, remove for default lossless
-        quality: '75'
-      }),
-      plugins: [imageminMozjpeg({ // lossy jpg compressor, remove for default lossless
-        quality: '75'
-      })]
-    }),
-    new FaviconsWebpackPlugin({
-      logo: './src/images/tris-package.svg',
-      icons: {
-        twitter: true,
-        windows: true
-      }
-    }),
-    new OfflinePlugin()
-  ]
 });
 ```
+
+We want our development and production builds to produce the same results visually. You don't want to finish coding, run the build, and then have a totally different website on build. That's why we have `webpack.common.js` to handle all the loaders and asset management. The `webpack.dev.js` will be slightly different with a lighter weight sourcemap. Finally the `webpack.prod.js` will handle all the final stages of getting your website to production. That being immage compression, asset compression (gzip), asset minification, favicon generation, caching, and creating an offline-first experience.
+
+I'll go into each process below.
 
 <a name="wds"/></a>
 ___
 
 ### Webpack development server
 
-The webpack-dev-server is configured in the package.json. `npm start` will run the server and open your project in the browser using the `webpack.dev.js` config. `npm start` is npm's default script, so you don't need to add `run` to it. But for the build you need to type `npm run build`.
+The webpack-dev-server is configured in the package.json. `npm start` will run the server and open your project in the browser using the `webpack.dev.js` config. `npm start` is npm's default script, so you don't need to add `run` to it. But for the build script you need to type `npm run build`.
 
 ```json
 "scripts": {
@@ -156,7 +121,7 @@ ___
 
 ### HTML assets and minification
 
-We use the [html-loader](https://github.com/webpack-contrib/html-loader) to export HTML as a string and minify the output. This allows you to import your `src/index.html` from your `src/index.js`.
+We use the [html-loader](https://github.com/webpack-contrib/html-loader) to export HTML as a string and minify the output. This allows you to import your `src/index.html` within your `src/index.js`.
 
 ```js
 /* webpack.common.js */
@@ -178,11 +143,11 @@ We use the [html-loader](https://github.com/webpack-contrib/html-loader) to expo
 import './index.html';
 ```
 
-We then use [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) to create a new `index.html` which will then go in the `dist` folder upon build. It will also work in development build as well since it's in the `webpack.common.js`.
+We then use [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) to create a new generated `index.html` with all the correct asset imports.
 
-The `template:` option is where you're pulling your HTML template from. You can use your own html template or you can even use it with handlebars template, [among a few others](https://github.com/jantimon/html-webpack-plugin/blob/master/docs/template-option.md).
+The `template:` option is where you're pulling your source HTML from. You can use your own html template, handlebars template, [or any of these templates](https://github.com/jantimon/html-webpack-plugin/blob/master/docs/template-option.md).
 
-The `inject:` option is where your assets will go. Webpack will put your bundled `webpack-bundle.js` at the bottom of the body by default, but here I switched it to `head` because we'll be using the [script-ext-html-webpack-plugin](https://github.com/numical/script-ext-html-webpack-plugin) to defer the scripts in the head, [which helps your websites performance](https://flaviocopes.com/javascript-async-defer/).
+The `inject:` option is where your assets will go. Webpack will put your bundled `webpack-bundle.js` script at the bottom of the body by default, but here I switched it to `head` because we'll be using the [script-ext-html-webpack-plugin](https://github.com/numical/script-ext-html-webpack-plugin) to add a defer attribute to the script and place it in the head of the website. [This helps with performance](https://flaviocopes.com/javascript-async-defer/).
 
 ```js
 /* webpack.common.js */
@@ -208,7 +173,6 @@ plugins: [
   }),
 ],
 ```
-Read more about [loaders](https://webpack.js.org/concepts/loaders/).
 
 <a name="sass"/></a>
 ___
@@ -217,7 +181,9 @@ ___
 
 In order to use Sass/SCSS, we need to use a few loaders to get our desired results. The [css-loader](https://github.com/webpack-contrib/css-loader), [postcss-loader](https://github.com/postcss/postcss-loader), and the [sass-loader](https://github.com/webpack-contrib/sass-loader).
 
-`test:` is using regex to check for any sass, scss, or css files and then runs them through these three loaders.
+`test:` is using regex to check for any sass, scss, or css files and then runs them through these three loaders, which is wrapped around [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin), which creates a CSS file from the JS file(s) that contain CSS.
+
+Read more about [the concept of loaders](https://webpack.js.org/concepts/loaders/).
 
 ```js
 /* webpack.common.js */
@@ -247,7 +213,7 @@ In order to use Sass/SCSS, we need to use a few loaders to get our desired resul
 },
 ```
 
-The second part of the loader sequence, the `postcss-loader`, that's where you'll be minifying and autoprefixing your css. To do this we create a `postcss.config.js` inside the `src/` folder and configure it like so...
+The second part of the loader sequence, the `postcss-loader`, that's where you'll be minifying and autoprefixing your css. To do this we create a `postcss.config.js` at the root of where your styles are `(index.scss)`, aka inside the `src/` folder and configure it like so...
 
 ```js
 /* postcss.config.js */
@@ -281,6 +247,9 @@ plugins: [
   })
 ],
 ```
+
+So basically... the `css-loader` will collect CSS from all the css files referenced in your application and put it into a string. Then `postcss-loader` autoprefixes and minifies said string, then `sass-loader` turns it into a JS module, then `mini-css-extract-plugin` extracts the CSS from the JS module into a single CSS file for the web browser to parse.
+
 <a name="es6"/></a>
 ___
 
@@ -288,7 +257,7 @@ ___
 
 You may want to use the latest JavaScript features and syntax, but not all browsers support them yet. [Babel](https://babeljs.io/) will handle that for us.
 
-Here we are testing for all js files excluding the `node_modules` folder, then running it through the [babel-loader](https://github.com/babel/babel-loader) with the [babel-preset-env](https://babeljs.io/docs/en/babel-preset-env) preset.
+Here we are testing for all js files but excluding the `node_modules` folder, then running it through the [babel-loader](https://github.com/babel/babel-loader) with the [babel-preset-env](https://babeljs.io/docs/en/babel-preset-env) preset.
 
 ```js
 /* webpack.common.js */
@@ -305,7 +274,7 @@ Here we are testing for all js files excluding the `node_modules` folder, then r
 }
 ```
 
-This time we're venturing into the `webpack.prod.js` file. When we run `npm run build`, our outputted js will be minified and have full sourcemaps. Running in dev mode via `npm start` we'll still have lighter sourcemaps but the js will not be minified.
+This time we're venturing into the `webpack.prod.js` file. When we `npm run build`, our outputted js will be minified and have full sourcemaps. Running in dev mode via `npm start` we'll still have lighter sourcemaps but the js will not be minified.
 
 ```js
 /* webpack.prod.js */
@@ -326,6 +295,183 @@ module.exports = merge(common, {
   },
 });
 ```
+<a name="img"/></a>
+___
+
+### Image assets + compression
+
+First we test for jpeg, jpg, png, gif, and svg using regex, then we use [file-loader](https://github.com/webpack-contrib/file-loader) which resolves `import/require()` on a file into a url and emits the file into the output directory. So if you're using an <img> that grabs a file from the `src/images` folder, it will be imported and emited to the specified output path `images`. Which ends up being `src/images` if you `npm start` (running dev), or `npm run build` (running build).
+
+```js
+/* webpack.common.js */
+
+{
+  test: /\.(jpe?g|png|gif|svg)$/,
+  use: [{
+    loader: 'file-loader',
+    options: {
+      name: '[name].[ext]',
+      outputPath: 'images/',
+      publicPath: 'images/'
+    },
+  }]
+},
+```
+
+Now we only want to optimize our images on `npm run build`, so we edit our `webpack.prod.js` like so.
+
+Again we test for jpeg, jpg, png, gif, and svg using regex, and apply the appropriate optimizations. `gifsicle` is a lossless gif compressor, `pngquant` is a lossless png compressor, and we can add an extra plugin called `imageminMozjpeg` to perform lossy compression. A safe bet is setting the quality between 75-90 and you should get some decent compression without loss in visible quality.
+
+I suggest sticking to the lossless compression, and cropping your images to their right size before adding to your project. Just remove the imageminMozjpeg to do so.
+
+You can also use [tinypng](https://tinypng.com/) for image compression.
+
+```js
+/* webpack.prod.js */
+
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const imageminMozjpeg = require('imagemin-mozjpeg');
+
+plugins: [
+  new ImageminPlugin({
+    test: /\.(jpe?g|png|gif|svg)$/i,
+    gifsicle: { // lossless gif compressor
+      optimizationLevel: 9
+    },
+    pngquant: ({ // lossy png compressor, remove for default lossless
+      quality: '75'
+    }),
+    plugins: [imageminMozjpeg({ // lossy jpg compressor, remove for default lossless
+      quality: '75'
+    })]
+  }),
+]
+```
+<a name="font"></a>
+___
+
+### Font loading
+
+Here we are testing for all the common font extensions and using the [file-loader](https://github.com/webpack-contrib/file-loader) again to resolve our font imports and output them.
+
+```js
+/* webpack.common.js */
+
+{
+  test: /\.(woff|woff2|ttf|otf)$/,
+  use: [{
+    loader: 'file-loader',
+    options: {
+      name: '[name].[ext]',
+      outputPath: 'fonts/',
+      publicPath: 'fonts/'
+    },
+  }]
+},
+```
+<a name="gzip"></a>
+___
+
+### Asset compression
+
+Here we are back in the `webpack.prod.js` config using the [compression-webpack-plugin](https://github.com/webpack-contrib/compression-webpack-plugin) to compress __only__ the html, css, and javascript files. This is to avoid compressing the sourcemap files that get generated.
+
+```js
+/* webpack.prod.js */
+
+module.exports = merge(common, {
+  mode: 'production',
+  plugins: [
+    new CompressionPlugin({
+      test: /\.(html|css|js)(\?.*)?$/i // only compressed html/css/js, skips compressing sourcemaps etc
+    }),
+});
+```
+<a name="source"></a>
+___
+
+### Sourcemaps
+
+Using sourcemaps is essential for debugging your code in the dev tools.
+
+As you can see when you `npm start` and open up devtools in Chrome then click the console, you'll see that there are two console.logs coming from `script.js` line 1 and 2. We can easily see this in our folder structure at `src/scripts/script.js`. If we didn't use sourcemaps then devtools would show us these console.logs are coming from our bundled `webpack-bundle.js`, which isn't very helpful.
+
+Similar case with our styles. If you take a look at the `body` element in devtools, you'll see some styles being applied from our `_global.scss` file, and some from our `_typography.scss` file, which are both located in our `src/styles/base/` folder. We wouldn't be able to know this if we left out sourcemaps. It would just show us the styles came from the bundled `webpack-bundle.css`.
+
+```js
+/* webpack.dev.js */
+
+module.exports = merge(common, {
+  mode: 'development',
+  devtool: 'inline-source-map',
+});
+```
+
+```js
+/* webpack.prod.js */
+
+module.exports = merge(common, {
+  mode: 'production',
+  devtool: 'source-map',
+});
+```
+
+Read up more on the [different kinds of sourcemaps](https://webpack.js.org/configuration/devtool/) to find what works best for your project.
+
+<a name="favi"></a>
+___
+
+### Favicon generation
+
+This is a great plugic that generations every single icon you'll ever need based off one image. In my `src/images/` folder I have a `tris-package.svg` that I input into the [favicons-webpack-plugin](https://github.com/jantimon/favicons-webpack-plugin).
+
+It will generate icons for apple, android, chrome, firefox, twitter, windows, you name it. It will generate each in all different sizes and import them directly into your website head where they belong. Twitter and windows are set to false but default, so I changed them to true just to cover all the bases just in-case.
+
+Note: this dramatically increasing the build time. Which is understandable considering how much it is doing under the hood and how much time it is saving you in the long run. Don't be surprised if your `npm run build` takes 20-40 seconds.
+
+```js
+/* webpack.prod.js */
+
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+
+module.exports = merge(common, {
+  mode: 'production',
+  plugins: [
+    new FaviconsWebpackPlugin({
+      logo: './src/images/tris-package.svg',
+      icons: {
+        twitter: true,
+        windows: true
+      }
+    }),
+  ]
+});
+```
+
+<a name="offline"></a>
+___
+
+### Offline first and caching
+
+Here we use the [offline-plugin](https://github.com/NekR/offline-plugin) plugin to cache all of our assets on page load.
+
+This plugin is intended to provide an offline experience for __webpack__ projects. It uses __ServiceWorker__, and __AppCache__ as a fallback under the hood. We simply include this plugin in our `webpack.prod.js`, and the accompanying runtime in our client script (src/index.js), and our project will become offline ready by caching all (or some) of the webpack output assets.
+
+Note: __If you `npm run build` and upload your changes to your server (or hoever you keep your website updated), your website will need to have been closed and re-opened before you see the changes. You can't have it open and keep refreshing, you need to close the tab and re-open it for the cache to bust.__
+
+```js
+/* webpack.prod.js */
+
+const OfflinePlugin = require('offline-plugin');
+
+module.exports = merge(common, {
+  mode: 'production',
+  plugins: [
+    new OfflinePlugin()
+  ]
+});
+```
+___
 
 ## Gotcha's:
 
@@ -333,4 +479,13 @@ Coming Soon _(hint: I want to murder jQuery)_
 
 ___
 
-Hope this helped! Follow me on [twitter](https://twitter.com/triscodes) if you'd like. 💎✨🌸
+## Contributing:
+
+I try my best to explain things thoroughly, but if something can be explained more clearly, please feel free to send off a pull request with some suggested edits. Thank you!
+___
+
+Hope this helped! Follow me on [twitter](https://twitter.com/triscodes) if you're into that. 🌱
+
+___
+
+Move around:
