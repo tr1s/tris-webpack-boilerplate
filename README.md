@@ -448,7 +448,7 @@ module.exports = merge(common, {
 });
 ```
 
-Read up more on the [different kinds of sourcemaps](https://webpack.js.org/configuration/devtool/) to find what works best for your project.
+Read up more on the [different kinds of sourcemaps](https://blog.scottlogic.com/2017/11/01/webpack-source-map-options-quick-guide.html) to find what works best for your project. Additionally read up on the [devtool](https://webpack.js.org/configuration/devtool/) option in the webpack docs.
 
 <a name="favi"></a>
 ___
