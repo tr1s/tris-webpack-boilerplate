@@ -46,12 +46,14 @@ ___
 - [Webpack config split](#wcs)
 - [Webpack development server](#wds)
 - [HTML assets + minification](#html)
+- [404 page not found](#fourohfour)
 - [SCSS to CSS + autoprefixing](#sass)
 - [ES6 transpiling](#es6)
 - [Defering Scripts](#defer)
 - [Image assets + compression](#img)
 - [Font loading](#font)
 - [Asset compression (gzip)](#gzip)
+- [Clean Webpack Plugin](#cwp)
 - [Sourcemaps](#source)
 - [Favicon generation](#favi)
 - [Offline first and caching](#offline)
@@ -176,6 +178,15 @@ Keep adding more `new HtmlWebpackPlugin({})` plugins if you're going to have a m
 
 <a name="sass"/></a>
 ___
+
+<a name="fourohfour"></a>
+___
+
+### 404 page not found
+
+[Netlify](https://www.netlify.com/) is a free service that let's you manage and deploy your websites. It's a fantastic service. Netlify automatically searches for `404.html` and will load that page when someone tries to open a broken link on your website. So there's nothing for you to worry about.
+
+If you use a different service, please do some research on how you can link your `404.html` page so that it's active. It's a great way to send people back to your main page if they land on a broken link.
 
 ### SCSS to CSS + autoprefixing
 
@@ -390,6 +401,24 @@ module.exports = merge(common, {
     }),
 });
 ```
+
+<a name="cwp"/></a>
+___
+
+### Clean Webpack Plugin:
+
+[Clean-webpack-plugin](https://github.com/johnagan/clean-webpack-plugin) is just s simple webpack plugin to remove/clean your build folder(s) before building a new one.
+
+```js
+/* webpack.common.js */
+
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+plugins: [
+new CleanWebpackPlugin(['dist']),
+]
+```
+
 <a name="source"></a>
 ___
 
