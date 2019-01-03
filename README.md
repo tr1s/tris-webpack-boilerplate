@@ -9,17 +9,15 @@
 
 ![](https://i.imgur.com/qZQF2Ju.jpg)
 
-__This webpack boilerplate is for beginner, intermediate, and advanced developers looking to create static websites immediately while acheiving all the right optimizations to score perfect on [Google Page Speed Insights](https://developers.google.com/speed/pagespeed/insights/) and [Google Lighthouse Reports](https://developers.google.com/web/tools/lighthouse/)__ — This is an evolution of [tris-gulp-boilerplate](https://github.com/tr1s/tris-gulp-boilerplate), now with Webpack 4. Webpack is the new standard for bundling JS which [Gulp](https://gulpjs.com/) wasn't capable of. Thankfully Webpack can both run tasks and build js 💪.
+__This webpack boilerplate is for beginner, intermediate, and advanced developers looking to create static websites quickly while acheiving all the right optimizations to score perfect on [Google Page Speed Insights](https://developers.google.com/speed/pagespeed/insights/) and [Google Lighthouse Reports](https://developers.google.com/web/tools/lighthouse/)__ — This is an evolution of [tris-gulp-boilerplate](https://github.com/tr1s/tris-gulp-boilerplate), now with Webpack 4. Webpack is the new standard for bundling JS which [Gulp](https://gulpjs.com/) wasn't capable of. Thankfully Webpack can both run tasks and bundle js 💪.
 
 The goal of this project/boilerplate is to reach the following people:
 
-1. __The beginners__ 👶, who although use Gulp/Webpack/Node/Npm still need more thorough explainations than the more acquainted developers. They want things to work, but they want to know _how_ and _why_ as well.
-2. __The side-project hustlers__ 🏃‍♀️, those with all the great ideas but don't want to waste time with setup. They need to get their ideas, apps, and websites out and into the browser... _fast_.
-3. __The obsessive compulsive__ 🕵️‍♂️, people who are obsessed with getting those perfect scores on performance and optimizaitons reports. People who are digitally organized and pride themselves knowing that all their files are minimized, compressed, zipped, and ready to ship!
+1. __The beginners__ 👶 — who although use Gulp/Webpack/Node/Npm still need more thorough explainations than the more acquainted developers. They want things to work, but they want to know _how_ and _why_ as well.
+2. __The side-project hustlers__ 🏃‍♀️ — those with all the great ideas but don't want to waste time with setup. They need to get their ideas, apps, and websites out and into the browser... _fast_.
+3. __The obsessive compulsive__ 🕵️‍♂️ — people who love getting those perfect scores on performance and optimizaitons reports. People who are digitally organized and pride themselves knowing that all their files are minimized, compressed, zipped, and ready to ship!
 
-Feel free to fork and create your own workflows based off this template! Everyone's a little different, I understand.
-
-Now that version 1 status has been acheived, that means everything works but __more thorough documentation will soon come__.
+Feel free to fork this repo and create your own workflows based off this template! Everyone's a little different, I understand.
 
 ___
 
@@ -67,7 +65,7 @@ ___
 
 Instead of having one big `webpack.config.js`, we'll split our production and development builds into two new configs called `webpack.dev.js` and `webpack.prod.js`. Configurations we want on both development and production will go in the `webpack.common.js` config.
 
-When we run `npm start`, it will run the dev build based off the `webpack.dev.js` config which also has the merged `webpack.common.js` configurations.
+When we run `npm start`, it will run the development build based off the `webpack.dev.js` config which also has the merged `webpack.common.js` configurations. Read more about this in the [Webpack documentation](https://webpack.js.org/guides/production/).
 
 ```js
 /* wenpack.dev.js */
@@ -83,7 +81,7 @@ module.exports = merge(common, {
 });
 ```
 
-When we run `npm run build`, it will run the prod build based off the `webpack.prod.js` config which also has the merged `webpack.common.js` configurations.
+When we run `npm run build`, it will run the production build based off the `webpack.prod.js` config which also has the merged `webpack.common.js` configurations.
 
 ```js
 /* webpack.prod.js */
@@ -98,7 +96,7 @@ module.exports = merge(common, {
 });
 ```
 
-We want our development and production builds to produce the same results visually. You don't want to finish coding, run the build, and then have a totally different website on build. That's why we have `webpack.common.js` to handle all the loaders and asset management. The `webpack.dev.js` will be slightly different with a lighter weight sourcemap. Finally the `webpack.prod.js` will handle all the final stages of getting your website to production. That being immage compression, asset compression (gzip), asset minification, favicon generation, caching, and creating an offline-first experience.
+We want our development and production builds to produce the same results visually in the browser. You don't want to finish coding, run the build, and then have a totally different website on build with missing images for example. That's why we have `webpack.common.js` to handle all the loaders and asset management. The `webpack.dev.js` will be slightly different with a lighter weight sourcemap. Finally the `webpack.prod.js` will handle all the final stages of getting your website to production. That being image compression, asset compression (gzip), asset minification, favicon generation, caching, and creating an offline-first experience.
 
 I'll go into each process below.
 
@@ -121,7 +119,7 @@ ___
 
 ### HTML assets and minification
 
-We use the [html-loader](https://github.com/webpack-contrib/html-loader) to export HTML as a string and minify the output. This allows you to import your `src/index.html` within your `src/index.js`.
+We use the [html-loader](https://github.com/webpack-contrib/html-loader) to export HTML as a string and minify the output. This allows you to import your `src/index.html` within your `src/index.js`. We can simply minify the HTML with a loader option `minimize: true`, so this is why we leave it in the `webpack.common.js` instead of moving it to `webpack.prob.js`.
 
 ```js
 /* webpack.common.js */
@@ -145,9 +143,9 @@ import './index.html';
 
 We then use [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) to create a new generated `index.html` with all the correct asset imports.
 
-The `template:` option is where you're pulling your source HTML from. You can use your own html template, handlebars template, [or any of these templates](https://github.com/jantimon/html-webpack-plugin/blob/master/docs/template-option.md).
+The `template:` option is where you're pulling your source HTML from. You can use your own html template, [handlebars](https://handlebarsjs.com/) template, [or any of these templates](https://github.com/jantimon/html-webpack-plugin/blob/master/docs/template-option.md).
 
-The `inject:` option is where your assets will go. Webpack will put your bundled `webpack-bundle.js` script at the bottom of the body by default, but here I switched it to `head` because we'll be using the [script-ext-html-webpack-plugin](https://github.com/numical/script-ext-html-webpack-plugin) to add a defer attribute to the script and place it in the head of the website. [This helps with performance](https://flaviocopes.com/javascript-async-defer/).
+The `inject:` option is where your assets will go. Webpack will put your bundled `webpack-bundle.js` script at the bottom of the body by default, but here I switched it to `head` because we'll be using the [script-ext-html-webpack-plugin](https://github.com/numical/script-ext-html-webpack-plugin) to add a `defer` attribute to the script and place it in the head of the website. [This helps with performance](https://flaviocopes.com/javascript-async-defer/).
 
 ```js
 /* webpack.common.js */
@@ -174,6 +172,8 @@ plugins: [
 ],
 ```
 
+Keep adding more `new HtmlWebpackPlugin({})` plugins if you're going to have a multipage website. Name theme appropriately with the `title:` key.
+
 <a name="sass"/></a>
 ___
 
@@ -181,7 +181,7 @@ ___
 
 In order to use Sass/SCSS, we need to use a few loaders to get our desired results. The [css-loader](https://github.com/webpack-contrib/css-loader), [postcss-loader](https://github.com/postcss/postcss-loader), and the [sass-loader](https://github.com/webpack-contrib/sass-loader).
 
-`test:` is using regex to check for any sass, scss, or css files and then runs them through these three loaders, which is wrapped around [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin), which creates a CSS file from the JS file(s) that contain CSS.
+`test:` is using regex ([regular expression](https://www.wikiwand.com/en/Regular_expression)) to check for any sass, scss, or css files and then runs them through these three loaders, which is wrapped around [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin), which then generates a single CSS file for you to use in production.
 
 Read more about [the concept of loaders](https://webpack.js.org/concepts/loaders/).
 
@@ -232,7 +232,7 @@ module.exports = {
 
 Read up on [autoprefixer](https://github.com/postcss/autoprefixer) and [cssnano](https://cssnano.co/) to configure it more to your liking if need be. Additionally read up on [postcss](http://julian.io/some-things-you-may-think-about-postcss-and-you-might-be-wrong/) in general as it is a very powerful tool to have in your arsenal.
 
-The [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) is the final step as it acts as a loader as well as extracts the CSS and puts it into the head of your website.
+The [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) is the final step as it extracts the CSS and gives it a name before being output.
 
 ```js
 /* webpack.common.js */
@@ -248,7 +248,7 @@ plugins: [
 ],
 ```
 
-So basically... the `css-loader` will collect CSS from all the css files referenced in your application and put it into a string. Then `postcss-loader` autoprefixes and minifies said string, then `sass-loader` turns it into a JS module, then `mini-css-extract-plugin` extracts the CSS from the JS module into a single CSS file for the web browser to parse.
+So basically... the `css-loader` will collect CSS from all the css files referenced in your application and put them into a string. Then `postcss-loader` autoprefixes and minifies your styles, then `sass-loader` turns it into a JS module, then `mini-css-extract-plugin` extracts the CSS from the JS module into a single CSS file for the web browser to parse.
 
 <a name="es6"/></a>
 ___
@@ -274,7 +274,7 @@ Here we are testing for all js files but excluding the `node_modules` folder, th
 }
 ```
 
-This time we're venturing into the `webpack.prod.js` file. When we `npm run build`, our outputted js will be minified and have full sourcemaps. Running in dev mode via `npm start` we'll still have lighter sourcemaps but the js will not be minified.
+This time we're venturing into the `webpack.prod.js` file. When we `npm run build`, our output js will be minified and have full sourcemaps. Running in dev mode via `npm start` we'll still have lighter sourcemaps but the js will not be minified.
 
 ```js
 /* webpack.prod.js */
@@ -295,12 +295,15 @@ module.exports = merge(common, {
   },
 });
 ```
+
+Read more about the options in the [UglifyJs documentation](https://github.com/webpack-contrib/uglifyjs-webpack-plugin).
+
 <a name="img"/></a>
 ___
 
 ### Image assets + compression
 
-First we test for jpeg, jpg, png, gif, and svg using regex, then we use [file-loader](https://github.com/webpack-contrib/file-loader) which resolves `import/require()` on a file into a url and emits the file into the output directory. So if you're using an <img> that grabs a file from the `src/images` folder, it will be imported and emited to the specified output path `images`. Which ends up being `src/images` if you `npm start` (running dev), or `npm run build` (running build).
+First we test for jpeg, jpg, png, gif, and svg using regex ([regular expression](https://www.wikiwand.com/en/Regular_expression)), then we use [file-loader](https://github.com/webpack-contrib/file-loader), which resolves imports and requires of a file into a url then emits the file into the output directory. So if you're using an `<img>` element that grabs a file from the `src/images` folder, it will be imported and emited to the specified output path `images`. Which ends up being `src/images` if you `npm start` (running dev), or `npm run build` (running build).
 
 ```js
 /* webpack.common.js */
@@ -318,11 +321,11 @@ First we test for jpeg, jpg, png, gif, and svg using regex, then we use [file-lo
 },
 ```
 
-Now we only want to optimize our images on `npm run build`, so we edit our `webpack.prod.js` like so.
+Now we only want to optimize our images on `npm run build`, so we edit our `webpack.prod.js` like so below.
 
-Again we test for jpeg, jpg, png, gif, and svg using regex, and apply the appropriate optimizations. `gifsicle` is a lossless gif compressor, `pngquant` is a lossless png compressor, and we can add an extra plugin called `imageminMozjpeg` to perform lossy compression. A safe bet is setting the quality between 75-90 and you should get some decent compression without loss in visible quality.
+Again we test for jpeg, jpg, png, gif, and svg using regex, and apply the appropriate optimizations. `gifsicle` is a lossless gif compressor, `pngquant` is a lossy png compressor, and we can add an extra plugin called `imageminMozjpeg` to perform lossy jpg/jpeg compression. A safe bet is setting the quality between 75-90 and you should get some decent compression without loss in visible quality.
 
-I suggest sticking to the lossless compression, and cropping your images to their right size before adding to your project. Just remove the imageminMozjpeg to do so.
+I suggest sticking to the lossless compression, and cropping your images to their right size before adding to your project. Just remove the imageminMozjpeg and pngquant key sections to do so.
 
 You can also use [tinypng](https://tinypng.com/) for image compression.
 
@@ -374,7 +377,7 @@ ___
 
 ### Asset compression
 
-Here we are back in the `webpack.prod.js` config using the [compression-webpack-plugin](https://github.com/webpack-contrib/compression-webpack-plugin) to compress __only__ the html, css, and javascript files. This is to avoid compressing the sourcemap files that get generated.
+Here we are back in the `webpack.prod.js` config using the [compression-webpack-plugin](https://github.com/webpack-contrib/compression-webpack-plugin) to compress _only_ the html, css, and javascript files. This is to avoid compressing the sourcemap files that get generated.
 
 ```js
 /* webpack.prod.js */
@@ -396,7 +399,7 @@ Using sourcemaps is essential for debugging your code in the dev tools.
 
 As you can see when you `npm start` and open up devtools in Chrome then click the console, you'll see that there are two console.logs coming from `script.js` line 1 and 2. We can easily see this in our folder structure at `src/scripts/script.js`. If we didn't use sourcemaps then devtools would show us these console.logs are coming from our bundled `webpack-bundle.js`, which isn't very helpful.
 
-Similar case with our styles. If you take a look at the `body` element in devtools, you'll see some styles being applied from our `_global.scss` file, and some from our `_typography.scss` file, which are both located in our `src/styles/base/` folder. We wouldn't be able to know this if we left out sourcemaps. It would just show us the styles came from the bundled `webpack-bundle.css`.
+Similar case with our styles. If you take a look at the `body` element in devtools, you'll see some styles being applied from our `_global.scss` file, and some from our `_typography.scss` file, which are both located in our `src/styles/base/` folder. We wouldn't be able to know this if we left out sourcemaps. It would just show us the styles came from our bundled `webpack-bundle.css`.
 
 ```js
 /* webpack.dev.js */
@@ -423,11 +426,11 @@ ___
 
 ### Favicon generation
 
-This is a great plugic that generations every single icon you'll ever need based off one image. In my `src/images/` folder I have a `tris-package.svg` that I input into the [favicons-webpack-plugin](https://github.com/jantimon/favicons-webpack-plugin).
+This is a great plugin that generations every single icon you'll ever need based off one image source. In my `src/images/` folder I have a `tris-package.svg` that I input into the [favicons-webpack-plugin](https://github.com/jantimon/favicons-webpack-plugin).
 
 It will generate icons for apple, android, chrome, firefox, twitter, windows, you name it. It will generate each in all different sizes and import them directly into your website head where they belong. Twitter and windows are set to false but default, so I changed them to true just to cover all the bases just in-case.
 
-Note: this dramatically increasing the build time. Which is understandable considering how much it is doing under the hood and how much time it is saving you in the long run. Don't be surprised if your `npm run build` takes 20-40 seconds.
+Note: this dramatically increases the build time. Which is understandable considering how much it is doing under the hood and how much time it is saving you in the long run. Don't be surprised if your `npm run build` takes 20 seconds longer than usual.
 
 ```js
 /* webpack.prod.js */
@@ -457,7 +460,7 @@ Here we use the [offline-plugin](https://github.com/NekR/offline-plugin) plugin 
 
 This plugin is intended to provide an offline experience for __webpack__ projects. It uses __ServiceWorker__, and __AppCache__ as a fallback under the hood. We simply include this plugin in our `webpack.prod.js`, and the accompanying runtime in our client script (src/index.js), and our project will become offline ready by caching all (or some) of the webpack output assets.
 
-Note: __If you `npm run build` and upload your changes to your server (or hoever you keep your website updated), your website will need to have been closed and re-opened before you see the changes. You can't have it open and keep refreshing, you need to close the tab and re-open it for the cache to bust.__
+Note: __If you `npm run build` and upload your changes to your server (or however you keep your website updated), your website will need to have been closed and re-opened before you see the changes. You can't have it open and keep refreshing, you need to close the tab and re-open it for the cache to bust.__
 
 ```js
 /* webpack.prod.js */
@@ -475,7 +478,27 @@ ___
 
 # Gotcha's:
 
-Coming Soon _(hint: I want to murder jQuery)_
+Webpack runs into issues when trying to bundle big libraries like jQuery. You'll end up with console errors like `$ is not defined` or `jQuery is not defined`. To solve this we let Webpack treat it as an external. We then define the variables and include jQuery via a CDN. Most people have jQuery cached on their browser regardless so this won't be an issue in terms of speed.
+
+Read more about externals in the [Webpack documentation](https://webpack.js.org/configuration/externals/).
+
+```js
+/* webpack.common.js */
+plugins: [],
+externals: {
+  $: 'jquery',
+  jquery: 'jQuery',
+  'window.$': 'jquery',
+}
+```
+
+```html
+/* src/index.html */
+
+<head>
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+```
 
 ___
 
@@ -485,7 +508,3 @@ I try my best to explain things thoroughly, but if something can be explained mo
 ___
 
 Hope this helped! Follow me on [twitter](https://twitter.com/triscodes) if you're into that. 🌱
-
-___
-
-Move around:
