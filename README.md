@@ -407,7 +407,7 @@ ___
 
 ### Clean Webpack Plugin:
 
-[Clean-webpack-plugin](https://github.com/johnagan/clean-webpack-plugin) is just s simple webpack plugin to remove/clean your build folder(s) before building a new one.
+[Clean-webpack-plugin](https://github.com/johnagan/clean-webpack-plugin) is just a simple webpack plugin to remove/clean your build folder(s) before building a new one. Watch your folder scruture as you run `npm run build` or `npm start`. Your current `dist` folder (if you previously had one built) will be deleted and a new one will appear immediately after.
 
 ```js
 /* webpack.common.js */
