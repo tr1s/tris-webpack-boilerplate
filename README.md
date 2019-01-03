@@ -478,12 +478,13 @@ ___
 
 # Gotcha's:
 
-Webpack runs into issues when trying to bundle big libraries like jQuery. You'll end up with console errors like `$ is not defined` or `jQuery is not defined`. To solve this we let Webpack treat it as an external. We then define the variables and include jQuery via a CDN. Most people have jQuery cached on their browser regardless so this won't be an issue in terms of speed.
+Webpack runs into issues when trying to bundle big libraries like jQuery. You'll end up with console errors like `$ is not defined` or `jQuery is not defined`. To solve this we let Webpack treat it as an external. We then define the variables and include jQuery via a CDN. Most people have jQuery cached on their browser regardless so this won't be an issue in terms of performance.
 
 Read more about externals in the [Webpack documentation](https://webpack.js.org/configuration/externals/).
 
 ```js
 /* webpack.common.js */
+
 plugins: [],
 externals: {
   $: 'jquery',
