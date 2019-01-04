@@ -49,7 +49,6 @@ ___
 - [404 page not found](#fourohfour)
 - [SCSS to CSS + autoprefixing](#sass)
 - [ES6 transpiling](#es6)
-- [Defering Scripts](#defer)
 - [Image assets + compression](#img)
 - [Font loading](#font)
 - [Asset compression (gzip)](#gzip)
