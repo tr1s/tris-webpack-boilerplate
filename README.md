@@ -277,11 +277,22 @@ Here we are testing for all js files but excluding the `node_modules` folder, th
   test: /\.js$/,
   exclude: /(node_modules)/,
   use: {
-    loader: 'babel-loader',
-    options: {
-      presets: ['@babel/preset-env']
-    }
+    loader: 'babel-loader'
   }
+}
+```
+
+```json
+/* .babelrc */
+
+{
+  "presets": [
+    ["@babel/preset-env", {
+      "targets": {
+        "browsers": ["last 2 versions"]
+      }
+    }]
+  ]
 }
 ```
 
@@ -290,24 +301,24 @@ This time we're venturing into the `webpack.prod.js` file. When we `npm run buil
 ```js
 /* webpack.prod.js */
 
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = merge(common, {
   mode: 'production',
   devtool: 'source-map',
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
+      new TerserPlugin({
+        test: /\.js(\?.*)?$/i,
         parallel: true,
-        sourceMap: true
+        sourceMap: true,
       })
     ]
   },
 });
 ```
 
-Read more about the options in the [UglifyJs documentation](https://github.com/webpack-contrib/uglifyjs-webpack-plugin).
+Read more about the options in the [terser documentation](https://github.com/terser-js/terser).
 
 <a name="img"/></a>
 ___
