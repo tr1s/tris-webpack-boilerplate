@@ -184,7 +184,7 @@ ___
 
 ### 404 page not found
 
-[Netlify](https://www.netlify.com/) is a fantastic free service that let's you manage and deploy your websites. Netlify automatically searches for `404.html` and will load that page when someone tries to open a broken link on your website. So there's nothing for you to worry about.
+[Netlify](https://www.netlify.com/) is a fantastic free service that let's you manage and deploy your websites. Netlify automatically searches for a `404.html` and will load that page when someone tries to open a broken link on your website. So there's nothing for you to worry about.
 
 If you use a different service, please do some research on how you can link your `404.html` page so that it's active. It's a great way to send people back to your main page if they land on a broken link.
 
