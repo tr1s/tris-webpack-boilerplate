@@ -47,7 +47,7 @@ ___
 - [Webpack development server](#wds)
 - [HTML assets + minification](#html)
 - [404 page not found](#fourohfour)
-- [SCSS to CSS + autoprefixing](#sass)
+- [SCSS to CSS + optimizations](#sass)
 - [ES6 transpiling](#es6)
 - [Image assets + compression](#img)
 - [Font loading](#font)
@@ -187,7 +187,7 @@ If you use a different service, please do some research on how you can link your
 <a name="sass"/></a>
 ___
 
-### SCSS to CSS + autoprefixing
+### SCSS to CSS + optimizations
 
 In order to use Sass/SCSS, we need to use a few loaders to get our desired results. The [css-loader](https://github.com/webpack-contrib/css-loader), [postcss-loader](https://github.com/postcss/postcss-loader), and the [sass-loader](https://github.com/webpack-contrib/sass-loader).
 
@@ -228,6 +228,8 @@ The second part of the loader sequence, the `postcss-loader`, that's where you'l
 ```js
 /* postcss.config.js */
 
+const purgecss = require('@fullhuman/postcss-purgecss');
+
 module.exports = {
   plugins: [
     require('autoprefixer')({
@@ -235,12 +237,20 @@ module.exports = {
     }),
     require('cssnano')({
         preset: 'default',
+    }),
+    purgecss({
+      content: ['./**/*.html'],
+      keyframes: true
     })
   ]
 }
 ```
 
 Read up on [autoprefixer](https://github.com/postcss/autoprefixer) and [cssnano](https://cssnano.co/) to configure it more to your liking if need be. Additionally read up on [postcss](http://julian.io/some-things-you-may-think-about-postcss-and-you-might-be-wrong/) in general as it is a very powerful tool to have in your arsenal.
+
+[Purgecss](https://www.purgecss.com/) is a fantastic postcss plugin for getting rid of unused css in your code. Purgecss analyzes your content and your css files. Then it matches the selectors used in your files with the one in your content files. It removes unused selectors from your css, resulting in smaller css files.
+
+It's ready to go by default, but if you'd like to visually test it out for yourself, uncomment `@import "../node_modules/bulma/bulma";` in `index.scss`, and then run `npm run build` and take a look at the resulting `webpack-bundle.css` in your dist folder. You'll notice there isn't that much code. Then remove the purgecss from your `postcss.config.js` and run `npm run build` again, you'll notice there's 10,000+ lines of code in your css coming from the [Bulma](http://bulma.io) framework. As you can see, purgecss is perfect for getting rid of CSS you're not using when using big frameworks like Bootstrap, Foundation, Bulma, etc!
 
 The [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) is the final step as it extracts the CSS and gives it a name before being output.
 
