@@ -56,6 +56,7 @@ ___
 - [Sourcemaps](#source)
 - [Favicon generation](#favi)
 - [Offline first and caching](#offline)
+- [Progressive Web App (PWA)](#progressive)
 
 <a name="wcs"/></a>
 ___
@@ -523,6 +524,16 @@ module.exports = merge(common, {
   ]
 });
 ```
+
+<a name="progressive"/></a>
+___
+
+### Progressive Web App (PWA)
+
+[Progressive web applications](https://developers.google.com/web/progressive-web-apps/) (PWAs) are web applications that load like regular web pages or websites but can offer the user functionality such as working offline, push notifications, and device hardware access traditionally available only to native applications. PWAs combine the flexibility of the web with the experience of a native application.
+
+The only reason why we're not scoring 100 on Google Lighthouse Reports is because this project is missing a [Web App Manifest](https://developers.google.com/web/fundamentals/web-app-manifest/). If you'd like to turn your site into a PWA then feel free to add and connect it yourself!
+
 ___
 
 # Gotcha's:
