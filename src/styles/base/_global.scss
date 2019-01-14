@@ -2,9 +2,15 @@
   background: $pink;
 }
 
+html,
 body {
-  margin: 0;
+  height: 100%;
+}
+
+body {
   width: 100%;
+  min-height: 100%;
+  margin: 0;
 }
 
 .wrapper {
