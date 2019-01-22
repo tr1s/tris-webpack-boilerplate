@@ -1,13 +1,17 @@
+<!-- markdownlint-disable MD001 -->
+<!-- markdownlint-disable MD026 -->
+<!-- markdownlint-disable MD033 -->
+
 # tris-webpack-boilerplate
 
 [![Build Status](https://travis-ci.com/tr1s/tris-webpack-boilerplate.svg?branch=master)](https://travis-ci.com/tr1s/tris-webpack-boilerplate)
-[![](https://img.shields.io/david/tr1s/tris-webpack-boilerplate.svg)](https://github.com/tr1s/tris-webpack-boilerplate)
-[![](https://img.shields.io/david/dev/tr1s/tris-webpack-boilerplate.svg)](https://github.com/tr1s/tris-webpack-boilerplate)
-[![](https://img.shields.io/badge/chat-twitter-blue.svg)](https://twitter.com/triscodes)
-![](https://img.shields.io/github/license/tr1s/tris-webpack-boilerplate.svg)
-[![](https://img.shields.io/badge/buy%20me%20a%20tea-donate-yellow.svg)](https://paypal.me/Nightizm)
+[![Dependencies Status](https://img.shields.io/david/tr1s/tris-webpack-boilerplate.svg)](https://github.com/tr1s/tris-webpack-boilerplate)
+[![Dev Dependencies Status](https://img.shields.io/david/dev/tr1s/tris-webpack-boilerplate.svg)](https://github.com/tr1s/tris-webpack-boilerplate)
+[![Twitter Badge](https://img.shields.io/badge/chat-twitter-blue.svg)](https://twitter.com/triscodes)
+![License Badge](https://img.shields.io/github/license/tr1s/tris-webpack-boilerplate.svg)
+[![Donate Badge](https://img.shields.io/badge/buy%20me%20a%20tea-donate-yellow.svg)](https://paypal.me/Nightizm)
 
-![](https://imgur.com/lqhTYxk.jpg)
+![Google Lighthouse Report](https://imgur.com/lqhTYxk.jpg)
 
 __This webpack boilerplate is for beginner, intermediate, and advanced developers looking to create static websites quickly while acheiving all the right optimizations to score perfect on [Google Page Speed Insights](https://developers.google.com/speed/pagespeed/insights/) and [Google Lighthouse Reports](https://developers.google.com/web/tools/lighthouse/)__ — This is an evolution of [tris-gulp-boilerplate](https://github.com/tr1s/tris-gulp-boilerplate), now with Webpack 4. Webpack is the new standard for bundling JS which [Gulp](https://gulpjs.com/) wasn't capable of. Thankfully Webpack can both run tasks and bundle js 💪.
 
@@ -382,6 +386,7 @@ plugins: [
   }),
 ]
 ```
+
 <a name="font"></a>
 ___
 
@@ -404,6 +409,7 @@ Here we are testing for all the common font extensions and using the [file-loade
   }]
 },
 ```
+
 <a name="gzip"></a>
 ___
 
