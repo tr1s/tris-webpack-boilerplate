@@ -1,7 +1,7 @@
 {
   "name": "tris-webpack-boilerplate",
   "version": "1.0.0",
-  "description": "A webpack boilerplate for static websites",
+  "description": "A webpack boilerplate for static websites that has all the necessary modern tools and optimizations built-in.",
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
