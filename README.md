@@ -125,7 +125,7 @@ ___
 
 ### HTML assets and minification
 
-We use the [html-loader](https://github.com/webpack-contrib/html-loader) to export HTML as a string and minify the output. This allows you to import your `src/index.html` within your `src/index.js`. We can simply minify the HTML with a loader option `minimize: true`, so this is why we leave it in the `webpack.common.js` instead of moving it to `webpack.prob.js`.
+We use the [html-loader](https://github.com/webpack-contrib/html-loader) to export HTML as a string and minify the output. This allows you to import your `src/index.html` within your `src/index.js`. We can simply minify the HTML with a loader option `minimize: true`, so this is why we leave it in the `webpack.common.js` instead of moving it to `webpack.prod.js`.
 
 ```js
 /* webpack.common.js */
