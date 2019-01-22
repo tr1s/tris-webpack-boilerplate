@@ -49,7 +49,7 @@ ___
 - [Webpack Config Split](#wcs)
 - [Webpack Development Server](#wds)
 - [HTML assets + minification](#html)
-- [404 Page](#fourohfour)
+- [404 page](#fourohfour)
 - [SCSS to CSS + optimizations](#sass)
 - [ES6 transpiling](#es6)
 - [Image assets + compression](#img)
