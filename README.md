@@ -539,7 +539,7 @@ ___
 
 [Progressive web applications](https://developers.google.com/web/progressive-web-apps/) (PWAs) are web applications that load like regular web pages or websites but can offer the user functionality such as working offline, push notifications, and device hardware access traditionally available only to native applications. PWAs combine the flexibility of the web with the experience of a native application.
 
-The final step to make this boilerplate a PWA is to add the mandatory [Web App Manifest](https://developers.google.com/web/fundamentals/web-app-manifest/) to the root of your project and configure it appropriately!
+The final step to make this boilerplate a PWA is to properly configure the mandatory [Web App Manifest](https://developers.google.com/web/fundamentals/web-app-manifest/) in the webpack configuratoin file `webpack.prod.js`, via the `WebpackPwaManifest` plugin.
 
 <a name="gotcha"/></a>
 ___
