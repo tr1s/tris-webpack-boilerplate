@@ -411,6 +411,8 @@ Here we are testing for all the common font extensions and using the [file-loade
 },
 ```
 
+In our `src/styles/base/_typography.scss` we are loading the fonts via the `@font-face` rule. [Google Webfonts Helper](https://google-webfonts-helper.herokuapp.com/fonts) is also a fantastic tool for self-hosting Google Fonts hassle-free. Read more about the `@font-fact` rule on [CSS-tricks](https://css-tricks.com/snippets/css/using-font-face/).
+
 <a name="gzip"></a>
 ___
 
