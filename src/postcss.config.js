@@ -2,9 +2,7 @@ const purgecss = require('@fullhuman/postcss-purgecss');
 
 module.exports = {
   plugins: [
-    require('autoprefixer')({
-      browsers: 'last 2 versions',
-    }),
+    require('autoprefixer'),
     require('cssnano')({
         preset: 'default',
     }),
