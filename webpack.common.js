@@ -4,6 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -93,6 +94,16 @@ module.exports = {
       filename: '404.html',
       template: './src/404.html',
       inject: 'head'
+    }),
+    new PreloadWebpackPlugin({
+      rel: 'preload',
+      fileBlacklist: [/\.(js)$/],
+      include: 'allChunks'
+    }),
+    new PreloadWebpackPlugin({
+      rel: 'prefetch',
+      fileBlacklist: [/\.(jpe?g|png|gif|svg|js|css)$/],
+      include: 'allAssets'
     }),
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'defer'
