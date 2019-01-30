@@ -52,7 +52,6 @@ ___
 - [404 page](#fourohfour)
 - [SCSS to CSS + optimizations](#sass)
 - [ES6 transpiling](#es6)
-- [Browserslist](#browser)
 - [Image assets + compression](#img)
 - [Font loading](#font)
 - [Asset compression (gzip)](#gzip)
@@ -239,7 +238,9 @@ const purgecss = require('@fullhuman/postcss-purgecss');
 
 module.exports = {
   plugins: [
-    require('autoprefixer'),
+    require('autoprefixer')({
+      browsers: 'last 2 versions',
+    }),
     require('cssnano')({
         preset: 'default',
     }),
@@ -291,11 +292,22 @@ Here we are testing for all js files but excluding the `node_modules` folder, th
   test: /\.js$/,
   exclude: /(node_modules)/,
   use: {
-    loader: 'babel-loader',
-    options: {
-      presets: ['@babel/preset-env']
-    }
+    loader: 'babel-loader'
   }
+}
+```
+
+```json
+/* .babelrc */
+
+{
+  "presets": [
+    ["@babel/preset-env", {
+      "targets": {
+        "browsers": ["last 2 versions"]
+      }
+    }]
+  ]
 }
 ```
 
@@ -322,26 +334,6 @@ module.exports = merge(common, {
 ```
 
 Read more about the options in the [terser documentation](https://github.com/terser-js/terser).
-
-<a name="browser"/></a>
-___
-
-### Browserslist
-
-We configure our [browserslist](https://github.com/browserslist/browserslist) in the `package.json` to reflect what browsers we want to support. [Autoprefixer](https://github.com/postcss/autoprefixer) and [babel-present-env](https://babeljs.io/docs/en/babel-preset-env) will pick up on this so we don't have any excess config files in our root.
-
-Read up on what else you can pass into browserslist and use [browserl.ist](https://browserl.ist/) to see what browsers will specifically be targeted. Okay I think I've said browsers enough times now 😌.
-
-```json
-/* package.json */
-
-{
-  "browserslist": [
-    "> 0.25%",
-    "not dead"
-  ],
-}
-```
 
 <a name="img"/></a>
 ___
