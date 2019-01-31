@@ -97,12 +97,10 @@ module.exports = {
     }),
     new PreloadWebpackPlugin({
       rel: 'preload',
-      fileBlacklist: [/\.(js)$/],
-      include: 'allChunks'
-    }),
-    new PreloadWebpackPlugin({
-      rel: 'prefetch',
-      fileBlacklist: [/\.(jpe?g|png|gif|svg|js|css)$/],
+      as(entry) {
+        if (/\.(woff|woff2|ttf|otf)$/.test(entry)) return 'font';
+      },
+      fileWhitelist: [/\.(woff|woff2|ttf|otf)$/],
       include: 'allAssets'
     }),
     new ScriptExtHtmlWebpackPlugin({
