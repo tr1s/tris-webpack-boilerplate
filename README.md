@@ -230,7 +230,7 @@ Read more about [the concept of loaders](https://webpack.js.org/concepts/loaders
 },
 ```
 
-The second part of the loader sequence, the `postcss-loader`, that's where you'll be minifying and autoprefixing your css. To do this we create a `postcss.config.js` at the root of where your styles are `(index.scss)`, aka inside the `src/` folder and configure it like so...
+The second part of the loader sequence, the `postcss-loader`, that's where you'll be minifying and autoprefixing your css. To do this we create a `postcss.config.js` at the root of the project and configure it like so...
 
 ```js
 /* postcss.config.js */
@@ -328,19 +328,15 @@ ___
 
 ### Browserslist
 
-We configure our [browserslist](https://github.com/browserslist/browserslist) in the `package.json` to reflect what browsers we want to support. [Autoprefixer](https://github.com/postcss/autoprefixer) and [babel-present-env](https://babeljs.io/docs/en/babel-preset-env) will pick up on this so we don't have any excess config files in our root.
+Here we want to have one place where we can tell certain tools what browsers we'd like to add support for. We acheive this using [browserslist](https://github.com/browserslist/browserslist), and the corresponding `.browserslistrc` file in the project root. [Autoprefixer](https://github.com/postcss/autoprefixer) and [babel-present-env](https://babeljs.io/docs/en/babel-preset-env) will pick up on this file and apply what it needs to based on the config.
 
-Read up on what else you can pass into browserslist and use [browserl.ist](https://browserl.ist/) to see what browsers will specifically be targeted. Okay I think I've said browsers enough times now 😌.
+Read up on what else you can pass into `.browserslistrc` and use [browserl.ist](https://browserl.ist/) to see what browsers will specifically be targeted with your config. Okay I think I've said browsers enough times now 😌.
 
 ```json
-/* package.json */
+/* .browserslistrc */
 
-{
-  "browserslist": [
-    "> 0.25%",
-    "not dead"
-  ],
-}
+> 0.25%
+not dead
 ```
 
 <a name="img"/></a>
