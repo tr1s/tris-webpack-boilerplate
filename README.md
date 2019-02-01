@@ -399,7 +399,7 @@ plugins: [
 <a name="font"></a>
 ___
 
-### Font loading
+### Font loading + preloading
 
 Here we are testing for all the common font extensions and using the [file-loader](https://github.com/webpack-contrib/file-loader) again to resolve our font imports and output them.
 
@@ -419,7 +419,22 @@ Here we are testing for all the common font extensions and using the [file-loade
 },
 ```
 
-In our `src/styles/base/_typography.scss` we are loading the fonts via the `@font-face` rule. [Google Webfonts Helper](https://google-webfonts-helper.herokuapp.com/fonts) is also a fantastic tool for self-hosting Google Fonts hassle-free. Read more about the `@font-fact` rule on [CSS-tricks](https://css-tricks.com/snippets/css/using-font-face/).
+In our `src/styles/base/_typography.scss` we are loading the fonts via the `@font-face` rule. [Google Webfonts Helper](https://google-webfonts-helper.herokuapp.com/fonts) is also a fantastic tool for self-hosting Google Fonts hassle-free. Read more about the `@font-face` rule on [CSS-tricks](https://css-tricks.com/snippets/css/using-font-face/). Additionally, read up on the [font-display](https://css-tricks.com/font-display-masses/) property as well.
+
+It's always best practice to preload your fonts. We'll acheive that using the [preload-webpack-plugin](https://github.com/GoogleChromeLabs/preload-webpack-plugin), and you'll need to put it right after the `HtmlWebpackPlugin` for it to work properly.
+
+```js
+/* webpack.common.js */
+
+new PreloadWebpackPlugin({
+  rel: 'preload',
+  as(entry) {
+    if (/\.(woff|woff2|ttf|otf)$/.test(entry)) return 'font';
+  },
+  fileWhitelist: [/\.(woff|woff2|ttf|otf)$/],
+  include: 'allAssets'
+}),
+```
 
 <a name="gzip"></a>
 ___
