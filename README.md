@@ -54,7 +54,7 @@ ___
 - [ES6 transpiling](#es6)
 - [Browserslist](#browser)
 - [Image assets + compression](#img)
-- [Font loading](#font)
+- [Font loading + preloading](#font)
 - [Asset compression (gzip)](#gzip)
 - [Clean Webpack Plugin](#cwp)
 - [Sourcemaps](#source)
