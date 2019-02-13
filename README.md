@@ -29,7 +29,7 @@ ___
 You need [git](https://git-scm.com/) and [node.js](https://nodejs.org/) on your computer before running.
 
 1. `git clone https://github.com/tr1s/tris-webpack-boilerplate.git your-project-name`
-2. `cd your-project-name`
+2. `cd your-project-name && rm -fm .git`
 3. `npm install`
 4. `npm start`
 
@@ -567,7 +567,7 @@ ___
 
 # Gotcha's
 
-Webpack runs into issues when trying to bundle big libraries like jQuery. You'll end up with console errors like `$ is not defined` or `jQuery is not defined`. To solve this we let Webpack treat it as an external. We then define the variables and include jQuery via a CDN. Most people have jQuery cached on their browser regardless so this won't be an issue in terms of performance.
+Webpack runs into issues when trying to bundle big libraries like jQuery. You'll end up with console errors like `$ is not defined` or `jQuery is not defined`. To solve this we let Webpack treat it as an external. We then define the variables and include jQuery via a CDN. Most people have jQuery cached on their browser regardless so this won't be an issue in terms of performance. I've added the `externals:` config by default, but you'll have to add the [jQuery cdn](https://cdnjs.com/libraries/jquery/) by yourself if you plan to use it.
 
 Read more about externals in the [Webpack documentation](https://webpack.js.org/configuration/externals/).
 
