@@ -521,7 +521,7 @@ module.exports = merge(common, {
   mode: 'production',
   plugins: [
     new FaviconsWebpackPlugin({
-      logo: './src/images/tris-package.svg',
+      logo: './src/images/favicon.svg',
       icons: {
         twitter: true,
         windows: true

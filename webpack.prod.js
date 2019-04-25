@@ -39,7 +39,7 @@ module.exports = merge(common, {
       })]
     }),
     new FaviconsWebpackPlugin({
-      logo: './src/images/tris-package.svg',
+      logo: './src/images/favicon.svg',
       icons: {
         twitter: true,
         windows: true

@@ -6,7 +6,6 @@
 @font-face {
   font-family: 'Libre-Baskerville-Reg';
   font-display: fallback;
-  font-weight: normal;
   font-style: normal;
   src:
     local('Libre Baskerville'), /* Checks if font is on users computer */
@@ -27,7 +26,6 @@ html {
 body {
   font-family: $font-body;
   font-size: 1.6rem;
-  font-weight: 400;
   color: $black;
 }
 

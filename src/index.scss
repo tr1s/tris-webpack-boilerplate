@@ -1,16 +1,18 @@
-//! css frameworks
-// @import "../node_modules/bulma/bulma"; // css framework https://bulma.io/ - uncomment if you'd like to use it
+//! css framework
+// @import "../node_modules/bulma/bulma";
 
-//! utilities / helpers
-@import "./styles/utils/mixins";
-@import "./styles/utils/variables";
+//! utilities
+@import "./styles/utils/mixins";              // global mixins
+@import "./styles/utils/variables";           // global variables
 
-//! site-wide base styles
-@import "./styles/base/setup"; /* normalize, clearfix, border-box, anti-aliasing, grey-scale */
-@import "./styles/base/typography";
-@import "./styles/base/global";
+//! setup
+@import "./styles/setup/normalize";           // normalize browsers to make more consistent
+@import "./styles/setup/clearfix";             // clearfix for floats
+@import "./styles/setup/border-box";          // global border-box setting
 
-//! layout
+//! global styles
+@import "./styles/global/typography";         // global typography
+@import "./styles/global/global";             // global styles
+
+//! sections
 @import "./styles/layout/header";
-// @import "./styles/layout/main";
-// @import "./styles/layout/footer";
