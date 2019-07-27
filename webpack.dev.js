@@ -9,6 +9,12 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
+        test: /\.html$/,
+        use: [{
+          loader: 'html-loader'
+        }]
+      },
+      {
         test: /\.(sa|sc|c)ss$/,
         use: [
           'style-loader',

@@ -15,15 +15,6 @@ module.exports = {
         use: 'raw-loader'
       },
       {
-        test: /\.html$/,
-        use: [{
-          loader: 'html-loader',
-          options: {
-            minimize: true
-          }
-        }]
-      },
-      {
         test: /\.(jpe?g|png|gif|svg)$/,
         use: [{
           loader: 'file-loader',
