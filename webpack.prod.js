@@ -46,5 +46,9 @@ module.exports = merge(common, {
       }
     }),
     new OfflinePlugin()
-  ]
+  ],
+  output: {
+    filename: '[name].[contentHash].js',
+    path: path.resolve(__dirname, 'dist')
+  }
 });
