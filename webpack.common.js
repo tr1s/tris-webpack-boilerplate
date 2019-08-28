@@ -1,4 +1,4 @@
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
@@ -10,31 +10,36 @@ module.exports = {
     vendor: './src/vendor.js'
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.txt$/,
         use: 'raw-loader'
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: 'images/',
-            publicPath: '/images/'
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'images/',
+              publicPath: '/images/'
+            }
           }
-        }]
+        ]
       },
       {
         test: /\.(woff|woff2|ttf|otf)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: 'fonts/',
-            publicPath: 'fonts/'
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/',
+              publicPath: 'fonts/'
+            }
           }
-        }]
+        ]
       },
       {
         test: /\.js$/,
@@ -49,7 +54,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'tris-webpack-boilerplate',
       filename: 'index.html',
@@ -77,6 +82,6 @@ module.exports = {
   externals: {
     $: 'jquery',
     jquery: 'jQuery',
-    'window.$': 'jquery',
+    'window.$': 'jquery'
   }
 };

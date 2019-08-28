@@ -13,7 +13,6 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
 
-
 module.exports = merge(common, {
   mode: 'production',
   devtool: 'source-map',
@@ -21,12 +20,14 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.html$/,
-        use: [{
-          loader: 'html-loader',
-          options: {
-            minimize: true
+        use: [
+          {
+            loader: 'html-loader',
+            options: {
+              minimize: true
+            }
           }
-        }]
+        ]
       },
       {
         test: /\.(sa|sc|c)ss$/,
@@ -48,7 +49,7 @@ module.exports = merge(common, {
                   env: 'production'
                 }
               }
-            },
+            }
           },
           {
             loader: 'sass-loader',
@@ -57,7 +58,7 @@ module.exports = merge(common, {
             }
           }
         ]
-      },
+      }
     ]
   },
   optimization: {
@@ -65,7 +66,7 @@ module.exports = merge(common, {
       new TerserPlugin({
         test: /\.js(\?.*)?$/i,
         parallel: true,
-        sourceMap: true,
+        sourceMap: true
       })
     ]
   },
@@ -79,15 +80,20 @@ module.exports = merge(common, {
     }),
     new ImageminPlugin({
       test: /\.(jpe?g|png|gif|svg)$/i,
-      gifsicle: { // lossless gif compressor
+      gifsicle: {
+        // lossless gif compressor
         optimizationLevel: 9
       },
-      pngquant: ({ // lossy png compressor, remove for default lossless
+      pngquant: {
+        // lossy png compressor, remove for default lossless
         quality: '75'
-      }),
-      plugins: [imageminMozjpeg({ // lossy jpg compressor, remove for default lossless
-        quality: '75'
-      })]
+      },
+      plugins: [
+        imageminMozjpeg({
+          // lossy jpg compressor, remove for default lossless
+          quality: '75'
+        })
+      ]
     }),
     new FaviconsWebpackPlugin({
       logo: './src/images/favicon.svg',

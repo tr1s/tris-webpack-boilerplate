@@ -10,9 +10,11 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.html$/,
-        use: [{
-          loader: 'html-loader'
-        }]
+        use: [
+          {
+            loader: 'html-loader'
+          }
+        ]
       },
       {
         test: /\.(sa|sc|c)ss$/,
@@ -37,7 +39,7 @@ module.exports = merge(common, {
             }
           }
         ]
-      },
+      }
     ]
   },
   output: {
