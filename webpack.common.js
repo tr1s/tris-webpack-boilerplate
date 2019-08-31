@@ -1,7 +1,11 @@
+const path = require('path');
+
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const WriteFilePlugin = require('write-file-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -55,6 +59,13 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new WriteFilePlugin(),
+    new CopyPlugin([
+      {
+        from: path.resolve(__dirname, 'src', 'robots.txt'),
+        to: path.resolve(__dirname, 'dist', 'robots.txt')
+      }
+    ]),
     new HtmlWebpackPlugin({
       title: 'tris-webpack-boilerplate',
       filename: 'index.html',
