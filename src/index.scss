@@ -2,17 +2,17 @@
 // @import "../node_modules/bulma/bulma";
 
 //! utilities
-@import "./styles/utils/mixins"; // global mixins
-@import "./styles/utils/variables"; // global variables
+@import "./styles/utils/mixins";              // global mixins
+@import "./styles/utils/variables";           // global variables
 
 //! setup
-@import "./styles/setup/normalize"; // normalize browsers to make more consistent
-@import "./styles/setup/clearfix"; // clearfix for floats
-@import "./styles/setup/border-box"; // global border-box setting
+@import "./styles/setup/normalize";           // normalize browsers to make more consistent
+@import "./styles/setup/clearfix";             // clearfix for floats
+@import "./styles/setup/border-box";          // global border-box setting
 
 //! global styles
-@import "./styles/global/typography"; // global typography
-@import "./styles/global/global"; // global styles
+@import "./styles/global/typography";         // global typography
+@import "./styles/global/global";             // global styles
 
 //! sections
 @import "./styles/layout/header";

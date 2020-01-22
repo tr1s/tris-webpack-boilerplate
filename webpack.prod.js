@@ -1,15 +1,17 @@
 const path = require('path');
+
 const merge = require('webpack-merge');
+const common = require('./webpack.common.js');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
+
+const TerserPlugin = require('terser-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const imageminMozjpeg = require('imagemin-mozjpeg');
-const TerserPlugin = require('terser-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
+
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
-
-const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
   mode: 'production',
@@ -42,7 +44,7 @@ module.exports = merge(common, {
             options: {
               sourceMap: true,
               config: {
-                path: `${__dirname}/postcss.config.js`,
+                path: __dirname + '/postcss.config.js',
                 ctx: {
                   env: 'production'
                 }
@@ -95,19 +97,6 @@ module.exports = merge(common, {
     }),
     new FaviconsWebpackPlugin({
       logo: './src/images/favicon.svg',
-      favicons: {
-        appName: 'tris-webpack-boilerplate',
-        appDescription:
-          'A Webpack boilerplate for static websites that has all the necessary modern tools and optimizations built-in. Score a perfect 10/10 on performance.',
-        developerName: 'Tristan Michael Lawrence',
-        developerURL: null, // prevent retrieving from the nearest package.json
-        background: '#fafafa',
-        theme_color: '#FFA8A8',
-        icons: {
-          coast: false,
-          yandex: false
-        }
-      },
       icons: {
         twitter: true,
         windows: true
