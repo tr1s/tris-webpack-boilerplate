@@ -1,11 +1,11 @@
 const path = require('path');
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
-const PreloadWebpackPlugin = require('preload-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -25,6 +25,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
+              esModule: false,
               name: '[name].[ext]',
               outputPath: 'images/',
               publicPath: '/images/'
@@ -38,6 +39,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
+              esModule: false,
               name: '[name].[ext]',
               outputPath: 'fonts/',
               publicPath: 'fonts/'
@@ -67,7 +69,7 @@ module.exports = {
       }
     ]),
     new HtmlWebpackPlugin({
-      title: 'tris-webpack-boilerplate',
+      title: 'tris-home-page',
       filename: 'index.html',
       template: './src/index.html',
       inject: 'head'
