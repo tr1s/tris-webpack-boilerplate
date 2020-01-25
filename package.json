@@ -1,19 +1,38 @@
 {
   "name": "tris-webpack-boilerplate",
   "version": "1.0.0",
-  "description": "A webpack boilerplate for static websites that has all the necessary modern tools and optimizations built-in.",
   "private": true,
-  "scripts": {
-    "start": "webpack-dev-server --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
-  },
+  "description": "A webpack boilerplate for static websites that has all the necessary modern tools and optimizations built-in.",
+  "keywords": [],
   "repository": {
     "type": "git",
     "url": "https://github.com/tr1s/tris-webpack-boilerplate"
   },
-  "keywords": [],
-  "author": "tr1s",
   "license": "ISC",
+  "author": "tr1s",
+  "scripts": {
+    "build": "webpack --config webpack.prod.js",
+    "start": "webpack-dev-server --open --config webpack.dev.js"
+  },
+  "dependencies": {
+    "babel-eslint": "^10.0.3",
+    "bulma": "^0.8.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "compression-webpack-plugin": "^3.1.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "favicons-webpack-plugin": "^2.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-webpack-plugin": "^2.4.2",
+    "lazysizes": "^5.2.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "offline-plugin": "^5.0.7",
+    "preload-webpack-plugin": "^3.0.0-beta.4",
+    "script-ext-html-webpack-plugin": "^2.1.4",
+    "terser-webpack-plugin": "^2.3.2",
+    "webpack-merge": "^4.2.2",
+    "write-file-webpack-plugin": "^4.5.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
@@ -37,24 +56,5 @@
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
-  },
-  "dependencies": {
-    "babel-eslint": "^10.0.3",
-    "bulma": "^0.8.0",
-    "compression-webpack-plugin": "^3.1.0",
-    "clean-webpack-plugin": "^3.0.0",
-    "copy-webpack-plugin": "^5.1.1",
-    "favicons-webpack-plugin": "^2.1.0",
-    "html-webpack-plugin": "^3.2.0",
-    "imagemin-mozjpeg": "^8.0.0",
-    "imagemin-webpack-plugin": "^2.4.2",
-    "lazysizes": "^5.2.0",
-    "mini-css-extract-plugin": "^0.9.0",
-    "offline-plugin": "^5.0.7",
-    "preload-webpack-plugin": "^3.0.0-beta.4",
-    "script-ext-html-webpack-plugin": "^2.1.4",
-    "terser-webpack-plugin": "^2.3.2",
-    "webpack-merge": "^4.2.2",
-    "write-file-webpack-plugin": "^4.5.1"
   }
 }
