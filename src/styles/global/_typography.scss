@@ -4,20 +4,17 @@
 
 //! import a custom font below
 @font-face {
-  font-family: 'Libre-Baskerville-Reg';
+  font-family: "Libre-Baskerville-Reg";
   font-display: fallback;
   font-style: normal;
-  src:
-    local('Libre Baskerville'), /* Checks if font is on users computer */
-    local('LibreBaskerville-Regular'), /* Checks if font is on users computer */
-    url('fonts/libre-baskerville-v5-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-    url('fonts/libre-baskerville-v5-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  src: local("Libre Baskerville"), local("LibreBaskerville-Regular"),
+    url("fonts/libre-baskerville-v5-latin-regular.woff2") format("woff2"),
+    url("fonts/libre-baskerville-v5-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 //! set font variables
-$font-heading: 'Libre-Baskerville-Reg', Fallback, 'Georgia', serif;
+$font-heading: "Libre-Baskerville-Reg", Fallback, "Georgia", serif;
 $font-body: sans-serif;
-
 
 html {
   font-size: 62.5%; // 1rem = 10px, 3.5rem = 35px;
