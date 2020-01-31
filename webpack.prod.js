@@ -94,7 +94,7 @@ module.exports = merge(common, {
       ]
     }),
     new FaviconsWebpackPlugin({
-      logo: './src/images/favicon.svg',
+      logo: './src/public/images/favicon.svg',
       favicons: {
         appName: 'tris-webpack-boilerplate',
         appDescription:
