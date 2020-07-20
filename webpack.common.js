@@ -62,12 +62,14 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new WriteFilePlugin(),
-    new CopyPlugin([
-      {
-        from: path.resolve(__dirname, 'src', 'robots.txt'),
-        to: path.resolve(__dirname, 'dist', 'robots.txt')
-      }
-    ]),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src', 'robots.txt'),
+          to: path.resolve(__dirname, 'dist', 'robots.txt')
+        }
+      ]
+    }),
     new HtmlWebpackPlugin({
       title: 'tris-home-page',
       filename: 'index.html',
@@ -83,7 +85,9 @@ module.exports = {
     new PreloadWebpackPlugin({
       rel: 'preload',
       as(entry) {
-        if (/\.(woff|woff2|ttf|otf)$/.test(entry)) return 'font';
+        if (/\.(woff|woff2|ttf|otf)$/.test(entry)) {
+          return 'font';
+        }
       },
       fileWhitelist: [/\.(woff|woff2|ttf|otf)$/],
       include: 'allAssets'
