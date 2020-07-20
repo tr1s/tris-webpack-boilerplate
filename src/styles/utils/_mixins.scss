@@ -1,19 +1,37 @@
-/* MEDIA QUERIES */
+/* Media Queries
+========================================================================== */
+
 @mixin respond-to($breakpoint) {
-  @if $breakpoint== "mobile" {
-    @media (max-width: 480px) {
+  @if $breakpoint== "mobile-small" {
+    @media (max-width: 320px) {
+      @content;
+    }
+  } @else if $breakpoint== "mobile" {
+    @media (max-width: 375px) {
+      @content;
+    }
+  } @else if $breakpoint== "mobile-large" {
+    @media (max-width: 414px) {
       @content;
     }
   } @else if $breakpoint== "tablet" {
-    @media (max-width: 769px) {
+    @media (max-width: 768px) {
       @content;
     }
-  } @else if $breakpoint== "desktop" {
-    @media (max-width: 969px) {
+  } @else if $breakpoint== "tablet-large" {
+    @media (max-width: 1024px) {
       @content;
     }
-  } @else if $breakpoint== "wrapper" {
-    @media (max-width: 1170px) {
+  } @else if $breakpoint== "desktop-13" {
+    @media (max-width: 1280px) {
+      @content;
+    }
+  } @else if $breakpoint== "desktop-15" {
+    @media (max-width: 1440px) {
+      @content;
+    }
+  } @else if $breakpoint== "desktop-16" {
+    @media (min-width: 1792px) {
       @content;
     }
   } @else {
