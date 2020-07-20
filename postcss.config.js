@@ -1,7 +1,7 @@
 const purgecss = require('@fullhuman/postcss-purgecss');
 const cssnano = require('cssnano');
 
-module.exports = ctx => {
+module.exports = (ctx) => {
   return {
     plugins: [
       require('autoprefixer'),
@@ -13,7 +13,7 @@ module.exports = ctx => {
             purgecss({
               content: ['./**/*.html'],
               keyframes: true,
-              defaultExtractor: content => content.match(/[A-z0-9-:/]+/g)
+              defaultExtractor: (content) => content.match(/[A-z0-9-:/]+/g)
             })
           ]
         : [])

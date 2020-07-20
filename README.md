@@ -12,17 +12,17 @@
 
 ![Google Lighthouse Report](https://imgur.com/lqhTYxk.jpg)
 
-__This webpack boilerplate is for beginner, intermediate, and advanced developers looking to create static websites quickly while acheiving all the right optimizations to score perfect on [Google Page Speed Insights](https://developers.google.com/speed/pagespeed/insights/) and [Google Lighthouse Reports](https://developers.google.com/web/tools/lighthouse/)__ — This is an evolution of [tris-gulp-boilerplate](https://github.com/tr1s/tris-gulp-boilerplate), now with Webpack 4. Webpack is the new standard for bundling JS which [Gulp](https://gulpjs.com/) wasn't capable of. Thankfully Webpack can both run tasks and bundle js 💪
+**This webpack boilerplate is for beginner, intermediate, and advanced developers looking to create static websites quickly while acheiving all the right optimizations to score perfect on [Google Page Speed Insights](https://developers.google.com/speed/pagespeed/insights/) and [Google Lighthouse Reports](https://developers.google.com/web/tools/lighthouse/)** — This is an evolution of [tris-gulp-boilerplate](https://github.com/tr1s/tris-gulp-boilerplate), now with Webpack 4. Webpack is the new standard for bundling JS which [Gulp](https://gulpjs.com/) wasn't capable of. Thankfully Webpack can both run tasks and bundle js 💪
 
 The goal of this project/boilerplate is to reach the following people:
 
-1. __The beginners__ 👶 — who although use Gulp/Webpack/Node/Npm still need more thorough explainations than the more acquainted developers. They want things to work, but they want to know _how_ and _why_ as well.
-2. __The side-project hustlers__ 🏃‍♀️ — those with all the great ideas but don't want to waste time with setup. They need to get their ideas, apps, and websites out and into the browser... _fast_.
-3. __The obsessive compulsive__ 🕵️‍♂️ — people who love getting those perfect scores on performance and optimizaitons reports. People who are digitally organized and pride themselves knowing that all their files are minimized, compressed, zipped, and ready to ship!
+1. **The beginners** 👶 — who although use Gulp/Webpack/Node/Npm still need more thorough explainations than the more acquainted developers. They want things to work, but they want to know _how_ and _why_ as well.
+2. **The side-project hustlers** 🏃‍♀️ — those with all the great ideas but don't want to waste time with setup. They need to get their ideas, apps, and websites out and into the browser... _fast_.
+3. **The obsessive compulsive** 🕵️‍♂️ — people who love getting those perfect scores on performance and optimizaitons reports. People who are digitally organized and pride themselves knowing that all their files are minimized, compressed, zipped, and ready to ship!
 
 Feel free to fork this repo and create your own workflow based off this template! Everyone's a little different, I understand.
 
-___
+---
 
 # Usage
 
@@ -39,35 +39,43 @@ Remove everything in the `src/styles/` folder, `src/index.html` and `src/index.s
 
 5. `npm run build` when you're ready to upload your site to your FTP / hosting platform of choice. This will create a `dist` folder with all your website assets optimized and compressed.
 
-__If you'd like an in-depth explaination as to how everything works, please read about the features below.__ Otherwise, carry on coding and have fun :)
+**If you'd like an in-depth explaination as to how everything works, please read about the features below.** Otherwise, carry on coding and have fun :)
 
-___
-___
-___
-___
+---
+
+---
+
+---
+
+---
 
 # Features / Contents
 
-- [Webpack Config Split](#wcs)
-- [Webpack Development Server](#wds)
-- [HTML assets + minification](#html)
-- [404 page](#fourohfour)
-- [SCSS to CSS + optimizations](#sass)
-- [ES6 transpiling](#es6)
-- [Browserslist](#browser)
-- [Image assets + compression](#img)
-- [Font loading + preloading](#font)
-- [Asset compression (gzip)](#gzip)
-- [Clean Webpack Plugin](#cwp)
-- [Sourcemaps](#source)
-- [Favicon generation](#favi)
-- [Offline-first + caching](#offline)
-- [Progressive Web App (PWA)](#progressive)
-- [Gotcha's](#gotcha)
+- [tris-webpack-boilerplate](#tris-webpack-boilerplate)
+- [Usage](#usage)
+- [Features / Contents](#features--contents)
+- [Features Explained](#features-explained)
+    - [Webpack Config Split](#webpack-config-split)
+    - [Webpack Development Server](#webpack-development-server)
+    - [HTML assets and minification](#html-assets-and-minification)
+    - [404 page not found](#404-page-not-found)
+    - [SCSS to CSS + optimizations](#scss-to-css--optimizations)
+    - [ES6 transpiling](#es6-transpiling)
+    - [Browserslist](#browserslist)
+    - [Image assets + compression](#image-assets--compression)
+    - [Font loading + preloading](#font-loading--preloading)
+    - [Asset compression](#asset-compression)
+    - [Clean Webpack Plugin](#clean-webpack-plugin)
+    - [Sourcemaps](#sourcemaps)
+    - [Favicon generation](#favicon-generation)
+    - [Offline first and caching](#offline-first-and-caching)
+    - [Progressive Web App (PWA)](#progressive-web-app-pwa)
+- [Gotcha's](#gotchas)
 - [Contributing](#contributing)
 
 <a name="wcs"/></a>
-___
+
+---
 
 # Features Explained
 
@@ -80,13 +88,13 @@ When we run `npm start`, it will run the development build based off the `webpac
 ```js
 /* wenpack.dev.js */
 
-const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
+const merge = require("webpack-merge");
+const common = require("./webpack.common.js");
 
 /* merges the webpack.common.js and then you add your extra */
 
 module.exports = merge(common, {
-  mode: 'development',
+  mode: "development",
   /* the rest of code goes here */
 });
 ```
@@ -96,13 +104,13 @@ When we run `npm run build`, it will run the production build based off the `web
 ```js
 /* webpack.prod.js */
 
-const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
+const merge = require("webpack-merge");
+const common = require("./webpack.common.js");
 
 /* merges the webpack.common.js and then you add your extra */
 
 module.exports = merge(common, {
-  mode: 'production',
+  mode: "production",
 });
 ```
 
@@ -111,7 +119,8 @@ We want our development and production builds to produce the same results visual
 I'll go into each process below.
 
 <a name="wds"/></a>
-___
+
+---
 
 ### Webpack Development Server
 
@@ -125,7 +134,8 @@ The webpack-dev-server is configured in the package.json. `npm start` will run t
 ```
 
 <a name="html"/></a>
-___
+
+---
 
 ### HTML assets and minification
 
@@ -148,7 +158,7 @@ We use the [html-loader](https://github.com/webpack-contrib/html-loader) to expo
 ```js
 /* src/index.js */
 
-import './index.html';
+import "./index.html";
 ```
 
 We then use [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) to create a new generated `index.html` with all the correct asset imports.
@@ -185,7 +195,8 @@ plugins: [
 Keep adding more `new HtmlWebpackPlugin({})` plugins if you're going to have a multipage website. Name the page appropriately with the `title:` key.
 
 <a name="fourohfour"></a>
-___
+
+---
 
 ### 404 page not found
 
@@ -194,7 +205,8 @@ ___
 If you use a different service, please do some research on how you can link your `404.html` page so that it's active. It's a great way to send people back to your main page if they land on a broken link.
 
 <a name="sass"/></a>
-___
+
+---
 
 ### SCSS to CSS + optimizations
 
@@ -237,20 +249,20 @@ The second part of the loader sequence, the `postcss-loader`, that's where you'l
 ```js
 /* postcss.config.js */
 
-const purgecss = require('@fullhuman/postcss-purgecss');
+const purgecss = require("@fullhuman/postcss-purgecss");
 
 module.exports = {
   plugins: [
-    require('autoprefixer'),
-    require('cssnano')({
-        preset: 'default',
+    require("autoprefixer"),
+    require("cssnano")({
+      preset: "default",
     }),
     purgecss({
-      content: ['./**/*.html'],
-      keyframes: true
-    })
-  ]
-}
+      content: ["./**/*.html"],
+      keyframes: true,
+    }),
+  ],
+};
 ```
 
 Read up on [autoprefixer](https://github.com/postcss/autoprefixer) and [cssnano](https://cssnano.co/) to configure it more to your liking if need be. Additionally read up on [postcss](http://julian.io/some-things-you-may-think-about-postcss-and-you-might-be-wrong/) in general as it is a very powerful tool to have in your arsenal.
@@ -278,7 +290,8 @@ plugins: [
 So basically... the `css-loader` will collect CSS from all the css files referenced in your application and put them into a string. Then `postcss-loader` autoprefixes and minifies your styles, then `sass-loader` turns it into a JS module, then `mini-css-extract-plugin` extracts the CSS from the JS module into a single CSS file for the web browser to parse.
 
 <a name="es6"/></a>
-___
+
+---
 
 ### ES6 transpiling
 
@@ -306,19 +319,19 @@ This time we're venturing into the `webpack.prod.js` file. When we `npm run buil
 ```js
 /* webpack.prod.js */
 
-const TerserPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = merge(common, {
-  mode: 'production',
-  devtool: 'source-map',
+  mode: "production",
+  devtool: "source-map",
   optimization: {
     minimizer: [
       new TerserPlugin({
         test: /\.js(\?.*)?$/i,
         parallel: true,
         sourceMap: true,
-      })
-    ]
+      }),
+    ],
   },
 });
 ```
@@ -326,7 +339,8 @@ module.exports = merge(common, {
 Read more about the options in the [terser documentation](https://github.com/terser-js/terser).
 
 <a name="browser"/></a>
-___
+
+---
 
 ### Browserslist
 
@@ -342,7 +356,8 @@ not dead
 ```
 
 <a name="img"/></a>
-___
+
+---
 
 ### Image assets + compression
 
@@ -375,27 +390,33 @@ You can also use [tinypng](https://tinypng.com/) for image compression.
 ```js
 /* webpack.prod.js */
 
-const ImageminPlugin = require('imagemin-webpack-plugin').default;
-const imageminMozjpeg = require('imagemin-mozjpeg');
+const ImageminPlugin = require("imagemin-webpack-plugin").default;
+const imageminMozjpeg = require("imagemin-mozjpeg");
 
 plugins: [
   new ImageminPlugin({
     test: /\.(jpe?g|png|gif|svg)$/i,
-    gifsicle: { // lossless gif compressor
-      optimizationLevel: 9
+    gifsicle: {
+      // lossless gif compressor
+      optimizationLevel: 9,
     },
-    pngquant: ({ // lossy png compressor, remove for default lossless
-      quality: '75'
-    }),
-    plugins: [imageminMozjpeg({ // lossy jpg compressor, remove for default lossless
-      quality: '75'
-    })]
+    pngquant: {
+      // lossy png compressor, remove for default lossless
+      quality: "75",
+    },
+    plugins: [
+      imageminMozjpeg({
+        // lossy jpg compressor, remove for default lossless
+        quality: "75",
+      }),
+    ],
   }),
-]
+];
 ```
 
 <a name="font"></a>
-___
+
+---
 
 ### Font loading + preloading
 
@@ -435,7 +456,8 @@ new PreloadWebpackPlugin({
 ```
 
 <a name="gzip"></a>
-___
+
+---
 
 ### Asset compression
 
@@ -454,7 +476,8 @@ module.exports = merge(common, {
 ```
 
 <a name="cwp"/></a>
-___
+
+---
 
 ### Clean Webpack Plugin
 
@@ -463,15 +486,14 @@ ___
 ```js
 /* webpack.common.js */
 
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
-plugins: [
-new CleanWebpackPlugin(['dist']),
-]
+plugins: [new CleanWebpackPlugin(["dist"])];
 ```
 
 <a name="source"></a>
-___
+
+---
 
 ### Sourcemaps
 
@@ -485,8 +507,8 @@ Similar case with our styles. If you take a look at the `body` element in devtoo
 /* webpack.dev.js */
 
 module.exports = merge(common, {
-  mode: 'development',
-  devtool: 'inline-source-map',
+  mode: "development",
+  devtool: "inline-source-map",
 });
 ```
 
@@ -494,15 +516,16 @@ module.exports = merge(common, {
 /* webpack.prod.js */
 
 module.exports = merge(common, {
-  mode: 'production',
-  devtool: 'source-map',
+  mode: "production",
+  devtool: "source-map",
 });
 ```
 
 Read up more on the [different kinds of sourcemaps](https://blog.scottlogic.com/2017/11/01/webpack-source-map-options-quick-guide.html) to find what works best for your project. Additionally read up on the [devtool](https://webpack.js.org/configuration/devtool/) option in the webpack docs.
 
 <a name="favi"></a>
-___
+
+---
 
 ### Favicon generation
 
@@ -510,53 +533,53 @@ This is a great plugin that generates every single icon you'll ever need based o
 
 It will generate icons for apple, android, chrome, firefox, twitter, windows, you name it. It will generate each icon in all different sizes and import them directly into your website head where they belong. Twitter and windows are set to false but default, so I changed them to true just to cover all the bases just in-case.
 
-__Note: this dramatically increases the build time. Which is understandable considering how much it is doing under the hood and how much time it is saving you in the long run. Don't be surprised if your `npm run build` takes 20 seconds longer than usual.__
+**Note: this dramatically increases the build time. Which is understandable considering how much it is doing under the hood and how much time it is saving you in the long run. Don't be surprised if your `npm run build` takes 20 seconds longer than usual.**
 
 ```js
 /* webpack.prod.js */
 
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 
 module.exports = merge(common, {
-  mode: 'production',
+  mode: "production",
   plugins: [
     new FaviconsWebpackPlugin({
-      logo: './src/images/favicon.svg',
+      logo: "./src/images/favicon.svg",
       icons: {
         twitter: true,
-        windows: true
-      }
+        windows: true,
+      },
     }),
-  ]
+  ],
 });
 ```
 
 <a name="offline"></a>
-___
+
+---
 
 ### Offline first and caching
 
 Here we use the [offline-plugin](https://github.com/NekR/offline-plugin) plugin to cache all of our assets on page load.
 
-This plugin is intended to provide an offline experience for __webpack__ projects. It uses __ServiceWorker__, and __AppCache__ as a fallback under the hood. We simply include this plugin in our `webpack.prod.js`, and the accompanying runtime in our client script (src/index.js), and our project will become offline ready by caching all (or some) of the webpack output assets.
+This plugin is intended to provide an offline experience for **webpack** projects. It uses **ServiceWorker**, and **AppCache** as a fallback under the hood. We simply include this plugin in our `webpack.prod.js`, and the accompanying runtime in our client script (src/index.js), and our project will become offline ready by caching all (or some) of the webpack output assets.
 
-__Note: If you `npm run build` and upload your changes to your server (or however you keep your website updated), your website will need to have been closed and re-opened before you see the changes. You can't have it open and keep refreshing, you need to close the tab and re-open it for the cache to bust.__
+**Note: If you `npm run build` and upload your changes to your server (or however you keep your website updated), your website will need to have been closed and re-opened before you see the changes. You can't have it open and keep refreshing, you need to close the tab and re-open it for the cache to bust.**
 
 ```js
 /* webpack.prod.js */
 
-const OfflinePlugin = require('offline-plugin');
+const OfflinePlugin = require("offline-plugin");
 
 module.exports = merge(common, {
-  mode: 'production',
-  plugins: [
-    new OfflinePlugin()
-  ]
+  mode: "production",
+  plugins: [new OfflinePlugin()],
 });
 ```
 
 <a name="progressive"/></a>
-___
+
+---
 
 ### Progressive Web App (PWA)
 
@@ -565,7 +588,8 @@ ___
 The final step to make this boilerplate a PWA is to add the mandatory [Web App Manifest](https://developers.google.com/web/fundamentals/web-app-manifest/) to the root of your project and configure it appropriately!
 
 <a name="gotcha"/></a>
-___
+
+---
 
 # Gotcha's
 
@@ -588,17 +612,21 @@ externals: {
 /* src/index.html */
 
 <head>
-  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script
+    defer
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+  ></script>
 </head>
 ```
 
 <a name="contributing"/></a>
-___
+
+---
 
 # Contributing
 
 I try my best to explain things thoroughly, but if something can be explained more clearly, please feel free to send off a pull request with some suggested edits. Thank you!
 
-___
+---
 
 Hope this helped! Follow me on [twitter](https://twitter.com/triscodes) if you're into that. 🌱
