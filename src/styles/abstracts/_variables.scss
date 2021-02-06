@@ -1,0 +1,28 @@
+/* Sass Variables (font variables are in _typography.scss)
+========================================================================== */
+
+/* Global
+================================================= */
+$page-width: 100%;
+
+/* Fonts
+================================================= */
+$font-body: sans-serif;
+$font-heading: "Libre-Baskerville-Reg", Fallback, "Georgia", serif;
+
+/* Colours
+================================================= */
+$white: #fff;
+$grey-light: #fafafa;
+$grey: #d7d7d7;
+$black: #09090e;
+$black-soft: #444;
+$blue: #2c638f;
+$pink: #fff0f5;
+$yellow: #fffacd;
+
+/* Site colour defaults
+================================================= */
+$color-primary: $blue;
+$color-secondary: $pink;
+$color-tertiary: $yellow;

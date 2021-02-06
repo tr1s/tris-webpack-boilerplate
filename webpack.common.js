@@ -1,104 +1,95 @@
-const path = require('path');
-
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const WriteFilePlugin = require('write-file-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const PreloadWebpackPlugin = require('preload-webpack-plugin');
-const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const paths = require('./paths')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  mode: 'development',
-  entry: {
-    main: './src/index.js',
-    vendor: './src/vendor.js'
+  entry: [
+    paths.src + '/index.js'
+  ],
+  output: {
+    path: paths.build,
+    filename: '[name].bundle.js',
+    assetModuleFilename: 'assets/[name][ext]',
+    publicPath: '/',
   },
   module: {
     rules: [
       {
+        test: /\.html$/i,
+        loader: 'html-loader',
+      },
+      {
+        test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
+        type: 'asset'
+      },
+      {
         test: /\.txt$/,
-        use: 'raw-loader'
+        type: 'asset/source'
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/,
+        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+        type: 'asset/resource'
+      },
+      {
+        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+        type: 'asset/inline'
+      },
+      {
+        test: /\.js$/, exclude: /node_modules/,
+        use: ['babel-loader']
+      },
+      {
+        test: /\.(scss|css)$/,
         use: [
+          'style-loader',
           {
-            loader: 'file-loader',
+            loader: 'css-loader',
             options: {
-              esModule: false,
-              name: '[name].[ext]',
-              outputPath: 'images/',
-              publicPath: '/images/'
+              sourceMap: true,
+              importLoaders: 1
             }
-          }
-        ]
-      },
-      {
-        test: /\.(woff|woff2|ttf|otf)$/,
-        use: [
+          },
           {
-            loader: 'file-loader',
+            loader: 'postcss-loader',
             options: {
-              esModule: false,
-              name: '[name].[ext]',
-              outputPath: 'fonts/',
-              publicPath: 'fonts/'
+              sourceMap: true
             }
-          }
-        ]
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+        ],
       },
-      {
-        test: /\.js$/,
-        exclude: /(node_modules)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      }
-    ]
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new WriteFilePlugin(),
-    new CopyPlugin({
+    new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, 'src', 'robots.txt'),
-          to: path.resolve(__dirname, 'dist', 'robots.txt')
-        }
-      ]
+          from: paths.public,
+          to: 'assets',
+          globOptions: {
+            ignore: ['*.DS_Store'],
+          },
+        },
+      ],
     }),
     new HtmlWebpackPlugin({
-      title: 'tris-home-page',
-      filename: 'index.html',
-      template: './src/index.html',
-      inject: 'head'
+      title: 'tris webpack boilerplate',
+      favicon: paths.src + '/images/favicon.png',
+      template: paths.src + '/template.html', // template file
+      filename: 'index.html', // output file
     }),
     new HtmlWebpackPlugin({
-      title: 'tris-404-page',
-      filename: '404.html',
-      template: './src/404.html',
-      inject: 'head'
+      title: 'tris webpack boilerplate | 404',
+      favicon: paths.src + '/images/favicon.png',
+      template: paths.src + '/template-404.html', // template file
+      filename: '404.html', // output file
     }),
-    new PreloadWebpackPlugin({
-      rel: 'preload',
-      as(entry) {
-        if (/\.(woff|woff2|ttf|otf)$/.test(entry)) {
-          return 'font';
-        }
-      },
-      fileWhitelist: [/\.(woff|woff2|ttf|otf)$/],
-      include: 'allAssets'
-    }),
-    new ScriptExtHtmlWebpackPlugin({
-      defaultAttribute: 'defer'
-    })
-  ],
-  externals: {
-    $: 'jquery',
-    jquery: 'jQuery',
-    'window.$': 'jquery'
-  }
-};
+  ]
+}

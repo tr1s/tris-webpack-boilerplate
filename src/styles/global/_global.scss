@@ -1,5 +1,34 @@
+/* Typography styles
+========================================================================== */
+
+// Importing custom fonts:
+@font-face {
+  font-family: "Libre-Baskerville-Reg";
+  font-display: fallback;
+  font-style: normal;
+  src: local("Libre Baskerville"), local("LibreBaskerville-Regular"),
+    url("fonts/libre-baskerville-v5-latin-regular.woff2") format("woff2"),
+    url("fonts/libre-baskerville-v5-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+// Font variables are set in src/styles/abstracts/_variables.scss
+
+/* Global styles
+========================================================================== */
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 *::selection {
   background: $pink;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // 1rem = 10px, 3.5rem = 35px;
 }
 
 html,
@@ -9,12 +38,22 @@ body {
 
 body {
   width: 100%;
+  max-width: $page-width;
   min-height: 100%;
   margin: 0;
+  background: url("/src/images/mikasa.png");
+  background: url("/src/images/webpack-logo.svg");
+  font-size: 1.6rem;
+  font-family: $font-body;
+  color: $black;
 }
 
 .wrapper {
   max-width: 100%;
+}
+
+body :is(h1, h2, h3, h4, h5, h6) {
+  margin: 0;
 }
 
 h1,
@@ -24,6 +63,12 @@ h4,
 h5,
 h6 {
   margin: 0;
+}
+
+h1 {
+  font-size: 1.7rem;
+  font-family: $font-heading, serif;
+  font-weight: 400;
 }
 
 p {
@@ -42,4 +87,15 @@ img {
 ul {
   padding: 0;
   list-style: none;
+}
+
+/* Helpers
+================================================= */
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  content: "";
+  clear: both;
+  height: 0;
 }

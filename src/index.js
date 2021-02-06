@@ -1,10 +1,5 @@
-import * as OfflinePluginRuntime from 'offline-plugin/runtime';
+/* Main entry point for webpack
+========================================================================== */
 
-import './fonts/libre-baskerville-v5-latin-regular.woff';
-import './fonts/libre-baskerville-v5-latin-regular.woff2';
-
-import './index.html';
-import './index.scss';
-import './scripts/script';
-
-OfflinePluginRuntime.install();
+import './js/example'
+import './index.scss'
