@@ -1,66 +1,65 @@
-const paths = require('./paths')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const paths = require("./paths");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: [
-    paths.src + '/index.js'
-  ],
+  entry: [paths.src + "/index.js"],
   output: {
     path: paths.build,
-    filename: '[name].bundle.js',
-    assetModuleFilename: 'assets/[name][ext]',
-    publicPath: '/',
+    filename: "[name].bundle.js",
+    assetModuleFilename: "assets/[name][ext]",
+    publicPath: "/",
   },
   module: {
     rules: [
       {
         test: /\.html$/i,
-        loader: 'html-loader',
+        loader: "html-loader",
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
-        type: 'asset'
+        type: "asset",
       },
       {
         test: /\.txt$/,
-        type: 'asset/source'
+        type: "asset/source",
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-        type: 'asset/resource'
+        type: "asset/resource",
       },
       {
         test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
-        type: 'asset/inline'
+        type: "asset/inline",
       },
       {
-        test: /\.js$/, exclude: /node_modules/,
-        use: ['babel-loader']
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ["babel-loader"],
       },
       {
-        test: /\.(scss|css)$/,
+        test: /\.(sa|sc|c)ss$/,
         use: [
-          'style-loader',
+          "style-loader",
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               sourceMap: true,
-              importLoaders: 1
-            }
+              importLoaders: 1,
+            },
           },
           {
-            loader: 'postcss-loader',
+            loader: "postcss-loader",
             options: {
-              sourceMap: true
-            }
+              sourceMap: true,
+            },
           },
           {
-            loader: 'sass-loader',
+            loader: "sass-loader",
             options: {
-              sourceMap: true
-            }
+              sourceMap: true,
+            },
           },
         ],
       },
@@ -72,24 +71,24 @@ module.exports = {
       patterns: [
         {
           from: paths.public,
-          to: 'assets',
+          to: "assets",
           globOptions: {
-            ignore: ['*.DS_Store'],
+            ignore: ["*.DS_Store"],
           },
         },
       ],
     }),
     new HtmlWebpackPlugin({
-      title: 'tris webpack boilerplate',
-      favicon: paths.src + '/images/favicon.png',
-      template: paths.src + '/template.html', // template file
-      filename: 'index.html', // output file
+      title: "tris webpack boilerplate",
+      favicon: paths.src + "/images/favicon.png",
+      template: paths.src + "/index.html", // template file
+      filename: "index.html", // output file
     }),
     new HtmlWebpackPlugin({
-      title: 'tris webpack boilerplate | 404',
-      favicon: paths.src + '/images/favicon.png',
-      template: paths.src + '/template-404.html', // template file
-      filename: '404.html', // output file
+      title: "tris webpack boilerplate | 404",
+      favicon: paths.src + "/images/favicon.png",
+      template: paths.src + "/404.html", // template file
+      filename: "404.html", // output file
     }),
-  ]
-}
+  ],
+};
