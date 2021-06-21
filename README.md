@@ -1,6 +1,12 @@
 <!-- markdownlint-disable MD001 -->
 <!-- markdownlint-disable MD033 -->
 
+### Note: This project is no longer actively maintained.
+
+Unfortunately, I don't have the time/enthusiasm to maintain this project right now. I recommend forking this project, or reading its source to learn how it's built.
+
+---
+
 # tris-webpack-boilerplate
 
 [![Build Status](https://travis-ci.com/tr1s/tris-webpack-boilerplate.svg?branch=master)](https://travis-ci.com/tr1s/tris-webpack-boilerplate)
